@@ -1,0 +1,3045 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<script>
+(function(){
+  var ua=navigator.userAgent||navigator.vendor||window.opera||'';
+  if(/[?&]nb=1/.test(location.search)) return;
+  var inApp=/(Zalo|ZaloTheme|FBAN|FBAV|FB_IAB|FBIOS|FBDV|Messenger|Instagram|TikTok|BytedanceWebview|musical_ly|Line\/|MicroMessenger|WeChat|Twitter|Telegram|Snapchat|Pinterest|LinkedInApp|KAKAOTALK|Viber|Discord|Zalopay|GSA\/)/i.test(ua);
+  var real=/(CriOS|Chrome\/|Chromium|Firefox\/|FxiOS|Edg|EdgiOS|EdgA|OPR\/|OPiOS|Opera|SamsungBrowser|coc_coc_browser|CocCoc|UCBrowser|Brave|Vivaldi|YaBrowser|DuckDuckGo)/i.test(ua);
+  var isIOS=/iPad|iPhone|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var iosBare=isIOS && !real && !/Version\/[\d.]+.*Safari/i.test(ua);
+  var androidWv=/Android/i.test(ua) && /;\s*wv\)/i.test(ua) && !real;
+  if(inApp||iosBare||androidWv){
+    /* Kh\u00f4ng hi\u1ec7n shop \u2014 chuy\u1ec3n h\u1eb3n sang TRANG CH\u1eaeN ri\u00eang */
+    try{ document.documentElement.style.background='#05070d';if(document.body) document.body.textContent=''; }catch(e){}
+    location.replace('/blocked');
+  }
+})();
+</script>
+<meta charset="utf-8"/><title>SaRangHaeyo</title>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<style>
+:root{
+  --bg-1:#05060d; --bg-2:#0b0d1a;
+  --card:rgba(20,22,40,.58);
+  --card-border:rgba(140,120,255,.28);
+  --accent-a:#8b5cf6; --accent-b:#3b82f6; --accent-c:#ec4899;
+  --text:#e6e8f2; --muted:#8a8fb0;
+  --ok:#10b981; --warn:#f59e0b; --err:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(ellipse at top,#101430 0%,#05060d 60%);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.stars,.floaters{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.stars i{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.55;box-shadow:0 0 6px #fff;animation:tw 3s infinite ease-in-out}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.95;transform:scale(1.3)}}
+.floaters b{position:absolute;bottom:-20px;width:6px;height:6px;background:radial-gradient(circle,#fff,rgba(255,255,255,.2));border-radius:50%;opacity:.75;box-shadow:0 0 10px rgba(255,255,255,.7);animation:float linear infinite}
+@keyframes float{
+  0%{transform:translate(0,0) scale(.6);opacity:0}
+  10%{opacity:.85}
+  50%{transform:translate(30px,-50vh) scale(1)}
+  90%{opacity:.85}
+  100%{transform:translate(-20px,-105vh) scale(.4);opacity:0}
+}
+/* ==== ẢNH NỀN SHOP (xuyên thấu) ==== */
+.bg-photo{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('/bg-image');background-size:cover;background-position:center 12%;background-repeat:no-repeat;opacity:.34;filter:saturate(.95) contrast(1.03)}
+.bg-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,13,.45) 0%,rgba(5,6,13,.70) 45%,rgba(5,6,13,.94) 100%)}
+@media (max-width:600px){.bg-photo{opacity:.26;background-position:center 8%}}
+.container{position:relative;z-index:1;max-width:640px;margin:20px auto;padding:0 14px}
+.wide{max-width:1100px}
+.card{background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--card-border);border-radius:20px;padding:16px 18px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.title{font-weight:800;letter-spacing:1px;text-align:center;font-size:26px;margin:14px 0 8px;background:linear-gradient(90deg,#a78bfa,#3b82f6,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
+.subtitle{text-align:center;color:var(--muted);font-size:13px;letter-spacing:2px;margin-bottom:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 18px;border:0;border-radius:14px;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#fff;font-weight:700;cursor:pointer;transition:.2s;font-size:15px;user-select:none}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(139,92,246,.35)}
+.btn:active{transform:translateY(1px)}
+.btn.secondary{background:rgba(255,255,255,.06);border:1px solid var(--card-border)}
+.btn.danger{background:linear-gradient(90deg,#ef4444,#f97316)}
+.btn.small{width:auto;padding:8px 14px;font-size:13px;border-radius:10px}
+.btn[disabled],.btn.disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.4)}
+.input,select,textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--card-border);background:rgba(10,12,25,.55);color:var(--text);font-size:14px;outline:none;font-family:inherit}
+.input:focus{border-color:var(--accent-a);box-shadow:0 0 0 3px rgba(139,92,246,.25)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid var(--card-border);background:rgba(255,255,255,.04)}
+.tabbar{display:flex;background:rgba(10,12,25,.6);border:1px solid var(--card-border);border-radius:14px;padding:4px;margin-bottom:14px;flex-wrap:wrap}
+.tabbar button{flex:1;min-width:110px;padding:10px;border:0;background:transparent;color:var(--muted);font-weight:600;border-radius:10px;cursor:pointer}
+.tabbar button.active{background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#fff}
+.mini{font-size:12px;color:var(--muted)}
+.section-title{font-size:14px;color:var(--muted);letter-spacing:2px;text-align:center;margin:16px 0 10px}
+.list-item{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--card-border);border-radius:14px;background:rgba(10,12,25,.4);margin-top:10px;cursor:pointer;transition:.2s}
+.list-item:hover{border-color:var(--accent-a);background:rgba(139,92,246,.08)}
+.list-item.locked{cursor:not-allowed;opacity:.65}
+.list-item.locked:hover{border-color:var(--card-border);background:rgba(10,12,25,.4)}
+.list-item .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;opacity:.9;font-size:20px;flex-shrink:0}
+.list-item .arrow{margin-left:auto;color:var(--muted);font-size:18px}
+.badge{padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;display:inline-block}
+.badge.ok{background:rgba(16,185,129,.15);color:var(--ok)}
+.badge.warn{background:rgba(245,158,11,.15);color:var(--warn)}
+.badge.err{background:rgba(239,68,68,.15);color:var(--err)}
+.badge.mute{background:rgba(255,255,255,.06);color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.glow-title{animation:glow 3s ease-in-out infinite}
+@keyframes glow{0%,100%{text-shadow:0 0 6px rgba(139,92,246,.3)}50%{text-shadow:0 0 24px rgba(139,92,246,.9),0 0 42px rgba(59,130,246,.6)}}
+.login-box{max-width:440px;margin:60px auto;padding:36px 28px;border-radius:20px;background:var(--card);border:1px solid var(--card-border);backdrop-filter:blur(18px);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.login-title{font-weight:900;font-size:34px;text-align:center;letter-spacing:2px;background:linear-gradient(90deg,#a78bfa,#3b82f6,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent;margin:14px 0 4px}
+.orb{width:96px;height:96px;margin:0 auto;border-radius:50%;background:conic-gradient(#f472b6,#a78bfa,#3b82f6,#22d3ee,#f472b6);filter:blur(2px);box-shadow:0 0 60px rgba(139,92,246,.6);animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-bg.show{display:flex}
+.modal{max-width:520px;width:100%;max-height:80vh;overflow:auto;background:#0b0d1a;border:1px solid var(--card-border);border-radius:16px;padding:22px}
+
+/* ====== KHUNG TRẠNG THÁI ====== */
+.status-warn{
+  border:1px solid rgba(245,158,11,.55);
+  background:rgba(245,158,11,.10);
+  color:#fde68a;
+  border-radius:14px;padding:12px 14px;margin:12px 0;
+  display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.4;
+}
+.status-ok{
+  border:1px solid rgba(16,185,129,.55);
+  background:rgba(16,185,129,.10);   /* xanh lá trong suốt */
+  color:#a7f3d0;border-radius:16px;padding:14px 16px;margin:12px 0;
+}
+.status-ok h4{margin:0 0 6px 0;color:#34d399;font-size:15px;letter-spacing:1px}
+.status-ok .k{color:#d1fae5;font-weight:600}
+.status-ok .v{color:#fff;font-weight:700}
+.status-ok .row2{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.status-ok .row2:last-child{border-bottom:0}
+.status-off{
+  border:1px solid rgba(245,158,11,.55);
+  background:rgba(245,158,11,.10);
+  color:#fde68a;border-radius:16px;padding:14px 16px;margin:12px 0;
+}
+.status-off h4{margin:0 0 6px 0;color:#fbbf24;font-size:15px;letter-spacing:1px}
+.status-off .row2{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.status-off .row2:last-child{border-bottom:0}
+.status-exp{
+  border:1px solid rgba(239,68,68,.55);
+  background:rgba(239,68,68,.10);
+  color:#fecaca;border-radius:16px;padding:14px 16px;margin:12px 0;
+}
+.status-exp h4{margin:0 0 6px 0;color:#f87171;font-size:15px;letter-spacing:1px}
+.status-exp .row2{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.status-exp .row2:last-child{border-bottom:0}
+.msg-ok{border:1px solid rgba(16,185,129,.55);background:rgba(16,185,129,.10);color:#a7f3d0;border-radius:10px;padding:8px 12px;margin-top:8px;font-weight:600}
+.msg-err{border:1px solid rgba(239,68,68,.55);background:rgba(239,68,68,.10);color:#fecaca;border-radius:10px;padding:8px 12px;margin-top:8px;font-weight:600}
+
+/* ==== ICON TRONG SUỐT ==== */
+.list-item .ic{background:rgba(255,255,255,.04) !important;opacity:.55 !important;border:1px solid rgba(255,255,255,.08)}
+.stat-box .ic{background:transparent !important;opacity:.85}
+
+/* ==== STAT BOXES (Admin / Seller) ==== */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:10px 0 6px}
+.stat-box{position:relative;border-radius:16px;padding:14px 14px 12px;background:rgba(10,12,25,.55);border:1px solid var(--card-border);display:flex;align-items:center;gap:12px;overflow:hidden;transition:.2s}
+.stat-box:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.stat-box .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.stat-box .lbl{font-size:11px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;font-weight:600}
+.stat-box .val{font-size:22px;font-weight:800;color:#fff;line-height:1.1;margin-top:2px}
+.stat-box.blue    {border-color:rgba(59,130,246,.55);background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.04))}
+.stat-box.blue    .ic{background:rgba(59,130,246,.20);color:#93c5fd}
+.stat-box.green   {border-color:rgba(16,185,129,.55);background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(16,185,129,.04))}
+.stat-box.green   .ic{background:rgba(16,185,129,.20);color:#6ee7b7}
+.stat-box.orange  {border-color:rgba(245,158,11,.55);background:linear-gradient(135deg,rgba(245,158,11,.14),rgba(245,158,11,.04))}
+.stat-box.orange  .ic{background:rgba(245,158,11,.20);color:#fcd34d}
+.stat-box.red     {border-color:rgba(239,68,68,.55);background:linear-gradient(135deg,rgba(239,68,68,.14),rgba(239,68,68,.04))}
+.stat-box.red     .ic{background:rgba(239,68,68,.20);color:#fca5a5}
+.stat-box.purple  {border-color:rgba(139,92,246,.55);background:linear-gradient(135deg,rgba(139,92,246,.14),rgba(139,92,246,.04))}
+.stat-box.purple  .ic{background:rgba(139,92,246,.20);color:#c4b5fd}
+.stat-box.pink    {border-color:rgba(236,72,153,.55);background:linear-gradient(135deg,rgba(236,72,153,.14),rgba(236,72,153,.04))}
+.stat-box.pink    .ic{background:rgba(236,72,153,.20);color:#f9a8d4}
+.stat-box.cyan    {border-color:rgba(34,211,238,.55);background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(34,211,238,.04))}
+.stat-box.cyan    .ic{background:rgba(34,211,238,.20);color:#67e8f9}
+
+/* ==== LIVE ACTIVATION FLOATING TOAST (popup 2s giữa màn hình) ==== */
+#liveToastHost{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:10px;align-items:center;pointer-events:none;width:min(92vw,420px)}
+.live-toast{pointer-events:auto;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 14px;border-radius:16px;background:linear-gradient(135deg,#0f2a1e 0%,#12351f 55%,#0e3924 100%);border:1px solid rgba(34,197,94,.55);box-shadow:0 12px 32px -10px rgba(0,0,0,.6),0 0 24px -4px rgba(34,197,94,.35);color:#e6ffe9;font-size:13.5px;font-weight:600;animation:toastIn .35s cubic-bezier(.2,.9,.25,1.15),toastOut .35s ease-in 1.7s forwards;max-width:100%}
+.live-toast .tick{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#4ade80,#16a34a 70%);display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(34,197,94,.55),inset 0 -3px 6px rgba(0,0,0,.25)}
+.live-toast .tick svg{width:20px;height:20px;stroke:#fff;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))}
+.live-toast .body{display:flex;flex-direction:column;gap:2px;min-width:0}
+.live-toast .t1{color:#fde68a;font-weight:800;font-size:13px;letter-spacing:.2px;display:flex;align-items:center;gap:6px}
+.live-toast .t2{color:#f1f5f9;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;font-weight:800;letter-spacing:.5px}
+.live-toast .t3{color:#a7f3d0;font-size:12px;font-weight:600}
+@keyframes toastIn{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(-14px) scale(.98)}}
+
+/* ==== TIÊU ĐỀ (đã bỏ hiệu ứng con ếch) ==== */
+.title-wrap{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 8px}
+.title-wrap .title{margin:0;flex:1;text-align:center}
+
+/* ==== FREE KEY BOX ==== */
+.freekey-box{border:1px solid rgba(236,72,153,.45);background:linear-gradient(135deg,rgba(236,72,153,.10),rgba(139,92,246,.06));border-radius:16px;padding:14px;margin:12px 0;display:flex;align-items:center;gap:12px}
+.freekey-box .ic{width:44px;height:44px;border-radius:12px;background:rgba(236,72,153,.18);display:flex;align-items:center;justify-content:center;font-size:22px;color:#f9a8d4;flex-shrink:0}
+.freekey-box .info{flex:1;min-width:0}
+.freekey-box .info .t{font-weight:800;letter-spacing:.5px}
+.freekey-box .info .s{font-size:12px;color:var(--muted);margin-top:2px}
+.freekey-box .btn.small{width:auto;padding:10px 16px;background:linear-gradient(90deg,#ec4899,#8b5cf6)}
+.freekey-history{border:1px dashed rgba(236,72,153,.45);border-radius:14px;padding:12px;margin-top:12px;background:rgba(236,72,153,.05)}
+.freekey-history h4{margin:0 0 8px 0;color:#f9a8d4;font-size:13px;letter-spacing:1px}
+.freekey-history .row2{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+.freekey-history .row2:last-child{border-bottom:0}
+
+/* ==== BẢNG DANH SÁCH RESET ==== */
+.reset-list-card{border:2px solid rgba(236,72,153,.45);background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(139,92,246,.05));border-radius:16px;padding:14px 16px;margin-top:14px;box-shadow:0 6px 22px rgba(236,72,153,.10)}
+.reset-list-card h3{margin:0 0 10px 0;color:#f9a8d4;letter-spacing:1.5px;font-size:15px;display:flex;align-items:center;gap:8px}
+.fk-key-modal .modal{max-width:460px;text-align:center;border:1px solid rgba(236,72,153,.55);background:linear-gradient(160deg,#131427,#0b0d1a);box-shadow:0 10px 40px rgba(236,72,153,.25)}
+.fk-key-modal .fk-title{margin:0 0 6px 0;color:#f9a8d4;letter-spacing:1.5px;font-size:16px}
+.fk-key-modal .fk-sub{color:var(--muted);font-size:12px;margin-bottom:14px}
+.fk-key-modal .fk-key-box{background:#0b0d1a;border:1px dashed rgba(236,72,153,.5);border-radius:12px;padding:14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;color:#fde68a;word-break:break-all;user-select:all;margin-bottom:12px}
+.fk-key-modal .fk-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.fk-key-modal .btn{width:auto;padding:10px 18px}
+
+/* ==== SNOWFALL (đốm trắng bay lơ lửng khắp shop) ==== */
+.snowfall{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.snowfall span{position:absolute;top:-10vh;display:block;
+  animation:snowdrop linear infinite;user-select:none}
+/* ==== CENTER POPUP — WIDE BANNER (theo mẫu ảnh) ==== */
+#centerPopHost{position:fixed;inset:0;z-index:10000;pointer-events:none;display:flex;align-items:center;justify-content:center;padding:16px}
+.center-pop{
+  pointer-events:auto;position:relative;overflow:hidden;
+  width:min(86vw,440px);min-height:56px;
+  padding:14px 18px 12px;border-radius:12px;text-align:center;
+  background:linear-gradient(135deg,#123a25 0%,#175c34 55%,#12502d 100%);
+  border:1px solid rgba(52,211,153,.55);
+  box-shadow:0 14px 34px -12px rgba(0,0,0,.55),0 0 22px -8px rgba(52,211,153,.35),inset 0 0 34px rgba(52,211,153,.09);
+  animation:cpIn .28s cubic-bezier(.2,.9,.25,1.2),cpOut .32s ease-in 1.9s forwards;
+  will-change:transform,opacity;
+  margin-top:0;
+}
+.center-pop.err{
+  background:linear-gradient(135deg,#4a1a20 0%,#78222d 55%,#5c1a24 100%);
+  border-color:rgba(248,113,113,.55);
+  box-shadow:0 14px 34px -12px rgba(0,0,0,.55),0 0 22px -8px rgba(248,113,113,.4),inset 0 0 34px rgba(248,113,113,.1);
+}
+.center-pop .cp-watermark{
+  position:absolute;left:12px;top:6px;font-size:10px;font-weight:800;
+  letter-spacing:1.5px;color:#fff;opacity:.28;text-transform:uppercase;
+  z-index:1;pointer-events:none;white-space:nowrap;font-family:'JetBrains Mono',ui-monospace,monospace;
+}
+.center-pop .cp-sub{
+  position:absolute;left:0;right:0;top:6px;text-align:center;
+  font-size:10px;color:#fff;opacity:.32;z-index:1;pointer-events:none;letter-spacing:.5px;
+}
+.center-pop .cp-title{
+  position:relative;z-index:2;color:#fff;font-weight:800;
+  font-size:clamp(14px,2.6vw,18px);line-height:1.25;letter-spacing:.2px;
+  text-shadow:0 2px 8px rgba(0,0,0,.4);
+  padding-top:8px;
+}
+@keyframes cpIn{from{opacity:0;transform:translateY(-10px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cpOut{to{opacity:0;transform:translateY(-6px) scale(.97)}}
+@keyframes snowdrop{
+  0%{transform:translate(0,-10vh);opacity:0}
+  10%{opacity:.9}
+  90%{opacity:.9}
+  100%{transform:translate(-20px,115vh);opacity:0}
+}
+/* Perf: giảm blur & lớp phủ nặng để shop không bị lag */
+.card{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transform:translateZ(0)}
+.stars i,.floaters b,.snowfall span{will-change:transform,opacity;transform:translateZ(0)}
+.btn,.list-item,.tabbar button{transform:translateZ(0);backface-visibility:hidden}
+.btn:active{transform:translateY(1px) scale(.995)}
+/* Flat, gọn — không còn "3D dày cộm" */
+.btn{box-shadow:0 6px 18px -8px rgba(0,0,0,.55);letter-spacing:.3px}
+.btn:hover{filter:brightness(1.06)}
+@media (max-width:640px){
+  .card{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .snowfall span{box-shadow:none !important;filter:none !important}
+  .stars,.floaters{display:none}
+}
+/* Scrollbar mảnh cho khung lịch sử */
+#hisFrame::-webkit-scrollbar,#fkFrame::-webkit-scrollbar{width:6px}
+#hisFrame::-webkit-scrollbar-thumb,#fkFrame::-webkit-scrollbar-thumb{background:rgba(139,92,246,.5);border-radius:6px}
+#hisFrame::-webkit-scrollbar-track,#fkFrame::-webkit-scrollbar-track{background:transparent}
+/* ==== LOADING SPINNER cho nút Kích Hoạt / Nhận Key ==== */
+.btn.loading{position:relative;pointer-events:none;opacity:.85}
+.btn.loading .btn-label{visibility:hidden}
+.btn.loading::after{
+  content:"";position:absolute;left:50%;top:50%;
+  width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.35);border-top-color:#fff;
+  animation:spin .8s linear infinite;
+}
+/* Badge màu riêng cho từng loại key */
+.kt-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.5px;border:1px solid transparent;white-space:nowrap}
+.kt-v1{background:rgba(59,130,246,.15);color:#93c5fd;border-color:rgba(59,130,246,.5)}
+.kt-v2{background:rgba(16,185,129,.15);color:#6ee7b7;border-color:rgba(16,185,129,.5)}
+.kt-v3{background:rgba(245,158,11,.15);color:#fcd34d;border-color:rgba(245,158,11,.5)}
+.kt-v4{background:rgba(236,72,153,.15);color:#f9a8d4;border-color:rgba(236,72,153,.5)}
+.kt-v5{background:rgba(139,92,246,.15);color:#c4b5fd;border-color:rgba(139,92,246,.5)}
+.kt-v6{background:rgba(34,211,238,.15);color:#67e8f9;border-color:rgba(34,211,238,.5)}
+/* ==== Count-up pop + Seller stats framing (added) ==== */
+.num-pop{animation:numPop .38s ease-out}
+@keyframes numPop{0%{transform:scale(1)}40%{transform:scale(1.18);text-shadow:0 0 12px rgba(139,92,246,.65)}100%{transform:scale(1)}}
+.seller-search{width:100%;max-width:360px}
+.seller-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:12px}
+.seller-tile{border:1px solid rgba(139,92,246,.35);background:linear-gradient(135deg,rgba(30,32,58,.75),rgba(30,32,58,.4));border-radius:16px;padding:12px 14px;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+.seller-tile:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(139,92,246,.75);border-color:rgba(236,72,153,.55)}
+.seller-tile.active{border-color:#8b5cf6;box-shadow:0 0 0 2px rgba(139,92,246,.4), 0 12px 30px -18px rgba(139,92,246,.9)}
+.seller-tile .st-name{font-weight:700;letter-spacing:.3px;font-size:15px}
+.seller-tile .st-sub{color:#9aa4c7;font-size:11px;margin-top:2px}
+.seller-tile .st-mini{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.seller-tile .st-mini span{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.35);color:#c4b5fd;font-size:11px;padding:2px 8px;border-radius:999px}
+.frame-round{border:1px solid rgba(139,92,246,.35);border-radius:20px;padding:14px 16px;background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(236,72,153,.03))}
+.frame-title{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:10px;color:#e9d5ff;letter-spacing:.3px}
+.reset-chip{display:inline-block;background:rgba(236,72,153,.15);border:1px solid rgba(236,72,153,.45);color:#f9a8d4;font-size:11px;padding:2px 8px;border-radius:999px;margin:2px}
+
+.note-ip{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:13px;line-height:1.5;background:rgba(250,204,21,.10);border:1px solid rgba(250,204,21,.45);color:#fde68a}
+
+/* ====== CĂN GIỮA MÀN HÌNH CHO TRANG ĐĂNG NHẬP ====== */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 14px;margin:0 auto}
+.login-wrap .login-box{margin:0 auto;width:100%;max-width:430px;border-radius:22px}
+
+/* ====== KHUNG THÔNG BÁO KIỂU iOS (KEY BỊ BAN) ====== */
+.ios-alert-bg{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(6,8,18,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ios-alert-bg.show{display:flex;animation:iosFade .18s ease-out}
+@keyframes iosFade{from{opacity:0}to{opacity:1}}
+.ios-alert{width:100%;max-width:470px;background:#e9e9ec;color:#0b0b0f;border-radius:26px;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);padding:26px 22px 18px;text-align:center;
+  animation:iosPop .22s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes iosPop{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+.ios-alert .ia-title{font-size:20px;font-weight:700;line-height:1.35;margin-bottom:8px;color:#0b0b0f}
+.ios-alert .ia-time{font-size:13px;color:#4b5563;margin-bottom:12px}
+.ios-alert .ia-body{font-size:16px;line-height:1.5;color:#111827;text-align:left;max-height:46vh;overflow:auto;
+  padding:0 4px 8px;word-break:break-word}
+.ios-alert .ia-body *{max-width:100%}
+.ios-alert .ia-body a{color:#0a58ca;text-decoration:underline}
+.ios-alert .ia-body table{width:100%;border-collapse:collapse}
+.ios-alert .ia-body table td,.ios-alert .ia-body table th{border:1px solid #b6b6bd;padding:6px}
+.ios-alert .ia-body hr{border:0;border-top:1px solid #b6b6bd;margin:10px 0}
+.ios-alert .ia-ok{margin-top:14px;width:100%;border:0;border-radius:999px;background:#c5c5cb;color:#0b0b0f;
+  font-size:20px;font-weight:600;padding:14px 0;cursor:pointer;transition:.15s}
+.ios-alert .ia-ok:hover{background:#b9b9c0}
+.ios-alert .ia-ok:active{transform:scale(.985)}
+
+/* ====== TRÌNH SOẠN THẢO GHI CHÚ BAN (ADMIN) ====== */
+.rte{border:1px solid rgba(255,255,255,.18);border-radius:14px;overflow:hidden;background:#fff;color:#111}
+.rte .rte-bar{display:flex;flex-wrap:wrap;gap:4px;padding:8px;background:#fafafa;border-bottom:1px solid #d9d9de}
+.rte .rte-grp{display:flex;align-items:center;gap:2px;padding:0 6px;border-right:1px solid #e2e2e8}
+.rte .rte-grp:last-child{border-right:0}
+.rte button.rb{min-width:34px;height:32px;border:0;border-radius:8px;background:transparent;color:#3b3b45;
+  font-size:15px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.15s}
+.rte button.rb:hover{background:#e9e9ef}
+.rte button.rb.on{background:#d7d7e2}
+.rte select.rs{height:32px;border:1px solid #d9d9de;border-radius:8px;background:#fff;color:#3b3b45;font-size:13px;padding:0 6px;width:auto}
+.rte input[type=color]{width:34px;height:32px;border:1px solid #d9d9de;border-radius:8px;background:#fff;padding:2px;cursor:pointer}
+.rte .rte-area{min-height:190px;max-height:420px;overflow:auto;padding:14px 16px;background:#fff;color:#111;
+  font-family:Verdana,Arial,sans-serif;font-size:15px;line-height:1.55;outline:none}
+.rte .rte-area:empty:before{content:attr(data-ph);color:#9a9aa5}
+.rte .rte-foot{display:flex;justify-content:space-between;align-items:center;padding:6px 12px;background:#fafafa;
+  border-top:1px solid #d9d9de;color:#6b7280;font-size:12px}
+.rte.fs{position:fixed;inset:12px;z-index:9998;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.rte.fs .rte-area{max-height:calc(100vh - 190px);min-height:calc(100vh - 190px)}
+.rte-emoji{position:absolute;z-index:9999;background:#fff;border:1px solid #d9d9de;border-radius:12px;padding:8px;
+  display:none;grid-template-columns:repeat(8,1fr);gap:4px;box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:300px}
+.rte-emoji.show{display:grid}
+.rte-emoji span{cursor:pointer;font-size:19px;text-align:center;border-radius:6px;padding:2px}
+.rte-emoji span:hover{background:#eee}
+.ban-note-html{background:#fff;color:#111;border-radius:10px;padding:8px 10px;margin-top:4px}
+.ban-note-html a{color:#0a58ca}
+
+/* ==== PROXY FUNCTION LIST ==== */
+.proxy-fn-item{border:1px solid rgba(139,92,246,.35);border-radius:14px;padding:12px 14px;background:rgba(10,12,25,.45);margin-bottom:10px;transition:.2s}
+.proxy-fn-item:hover{border-color:rgba(139,92,246,.7);background:rgba(139,92,246,.08)}
+.proxy-fn-item .fn-name{font-weight:800;font-size:14px;letter-spacing:.3px;margin-bottom:6px;background:linear-gradient(90deg,#a78bfa,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.proxy-fn-item .fn-info{display:flex;flex-direction:column;gap:4px}
+.proxy-fn-item .fn-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}
+.proxy-fn-item .fn-label{color:var(--muted);font-size:12px;min-width:50px}
+.proxy-fn-item .fn-val{font-family:ui-monospace,Menlo,Consolas,monospace;color:#e2e8f0;font-weight:600;font-size:13px}
+.proxy-fn-item .fn-copy{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.45);color:#c4b5fd;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;transition:.15s;white-space:nowrap}
+.proxy-fn-item .fn-copy:hover{background:rgba(139,92,246,.35);color:#fff}
+.proxy-fn-item .fn-copy:active{transform:scale(.96)}
+.proxy-fn-item .fn-full-copy{display:flex;align-items:center;gap:6px;margin-top:6px;background:rgba(10,12,25,.6);border:1px dashed rgba(139,92,246,.35);border-radius:10px;padding:8px 10px}
+.proxy-fn-item .fn-full-copy code{flex:1;font-size:12px;color:#94a3b8;word-break:break-all}
+.proxy-fn-item .fn-full-copy .fn-copy{font-size:11px}
+
+/* ==== NÚT TẢI CẤU HÌNH IOS CAO CẤP (APPLE GLASSMORPHISM PRO) ==== */
+.ios-config-card{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:14px 16px;margin-top:14px;border-radius:20px;
+  background:radial-gradient(130% 140% at 0% 0%,rgba(99,102,241,.16) 0%,rgba(139,92,246,.10) 40%,rgba(15,18,36,.94) 100%);
+  border:1.5px solid rgba(167,139,250,.4);
+  box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 20px rgba(139,92,246,.15),inset 0 1px 1px rgba(255,255,255,.2);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  cursor:pointer;transition:all .28s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;
+}
+.ios-config-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(167,139,250,.9),rgba(236,72,153,.8),rgba(59,130,246,.85),transparent);
+}
+.ios-config-card::after{
+  content:"";position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 50%);
+  pointer-events:none;
+}
+.ios-config-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(192,132,252,.9);
+  box-shadow:0 14px 40px rgba(0,0,0,.65),0 0 30px rgba(168,85,247,.3),inset 0 1px 1px rgba(255,255,255,.3);
+}
+.ios-config-card.locked{
+  opacity:.65;cursor:not-allowed;filter:grayscale(.3);
+  box-shadow:0 6px 20px rgba(0,0,0,.4);border-color:rgba(255,255,255,.14);
+}
+.ios-config-card.locked:hover{
+  transform:none;border-color:rgba(255,255,255,.14);box-shadow:0 6px 20px rgba(0,0,0,.4);
+}
+.ios-config-card.unlocked{
+  border-color:rgba(16,185,129,.7);
+  box-shadow:0 12px 35px rgba(0,0,0,.6),0 0 25px rgba(16,185,129,.28),inset 0 1px 1px rgba(255,255,255,.25);
+  background:radial-gradient(130% 140% at 0% 0%,rgba(16,185,129,.16) 0%,rgba(14,165,233,.10) 40%,rgba(13,20,38,.95) 100%);
+}
+.ios-config-card.unlocked::before{
+  background:linear-gradient(90deg,transparent,rgba(16,185,129,.95),rgba(56,189,248,.85),transparent);
+}
+.ios-cfg-left{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.ios-cfg-icon{
+  width:42px;height:42px;border-radius:13px;
+  background:linear-gradient(135deg,rgba(139,92,246,.4),rgba(59,130,246,.3));
+  border:1.5px solid rgba(167,139,250,.55);
+  display:flex;align-items:center;justify-content:center;
+  color:#f8fafc;box-shadow:0 0 16px rgba(139,92,246,.35),inset 0 1px 1px rgba(255,255,255,.3);
+  flex-shrink:0;transition:all .28s ease;
+}
+.ios-config-card.unlocked .ios-cfg-icon{
+  background:linear-gradient(135deg,rgba(16,185,129,.4),rgba(6,182,212,.3));
+  border-color:rgba(52,211,153,.7);
+  color:#6ee7b7;box-shadow:0 0 18px rgba(16,185,129,.4),inset 0 1px 1px rgba(255,255,255,.3);
+}
+.ios-config-card:hover .ios-cfg-icon{transform:scale(1.05);}
+.ios-cfg-details{min-width:0;flex:1}
+.ios-cfg-title{display:flex;align-items:center;gap:7px;font-size:14.5px;font-weight:800;letter-spacing:.2px;color:#fff;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ios-pill-ver{font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#cbd5e1;letter-spacing:.3px;text-transform:uppercase}
+.ios-cfg-sub{font-size:11.5px;color:#a5b4fc;margin-top:2px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ios-config-card.unlocked .ios-cfg-sub{color:#86efac;font-weight:600}
+.ios-cfg-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ios-cfg-badge{
+  font-size:11px;font-weight:700;letter-spacing:.3px;padding:6px 12px;border-radius:14px;
+  background:rgba(255,255,255,.08);color:#94a3b8;border:1px solid rgba(255,255,255,.15);
+  white-space:nowrap;transition:all .25s ease;display:inline-flex;align-items:center;gap:4px;
+}
+.ios-cfg-badge.ready{
+  background:linear-gradient(135deg,rgba(16,185,129,.3),rgba(5,150,105,.55));
+  color:#a7f3d0;border-color:rgba(16,185,129,.8);
+  box-shadow:0 0 16px rgba(16,185,129,.4);
+  animation:pulseReady 2s infinite ease-in-out;
+}
+@keyframes pulseReady{
+  0%,100%{transform:scale(1);box-shadow:0 0 14px rgba(16,185,129,.4)}
+  50%{transform:scale(1.04);box-shadow:0 0 22px rgba(16,185,129,.7)}
+}
+.ios-cfg-action{
+  width:36px;height:36px;border-radius:11px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  display:flex;align-items:center;justify-content:center;color:#e2e8f0;
+  transition:.25s ease;flex-shrink:0;
+}
+.ios-config-card.unlocked .ios-cfg-action{
+  background:linear-gradient(135deg,#8b5cf6,#3b82f6);
+  color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(139,92,246,.5);
+}
+.ios-config-card.unlocked:hover .ios-cfg-action{
+  transform:scale(1.08);
+  box-shadow:0 6px 20px rgba(139,92,246,.7);
+}
+@media(max-width:380px){
+  .ios-config-card{padding:11px 12px;gap:8px}
+  .ios-cfg-icon{width:36px;height:36px;border-radius:10px}
+  .ios-cfg-title{font-size:13px}
+  .ios-pill-ver{display:none}
+  .ios-cfg-sub{font-size:10.5px}
+  .ios-cfg-badge{font-size:10px;padding:5px 8px}
+  .ios-cfg-action{width:32px;height:32px;border-radius:9px}
+}
+.mod-control-row{display:flex;align-items:center;gap:12px;margin-top:6px}
+/* ====== DYNAMIC ISLAND TOAST (COMPACT & SLEEK) ====== */
+.verified-pill{
+  position:fixed;top:max(14px, env(safe-area-inset-top, 14px));left:50%;transform:translateX(-50%);
+  display:inline-flex;align-items:center;gap:7px;
+  padding:6px 14px;border-radius:999px;
+  background:rgba(15,20,35,.94);border:1px solid rgba(16,185,129,.55);
+  box-shadow:0 6px 20px rgba(0,0,0,.5),0 0 15px rgba(16,185,129,.25);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  color:#f8fafc;font-size:12px;font-weight:700;letter-spacing:.2px;
+  white-space:nowrap;max-width:calc(100vw - 32px);
+  z-index:99999;pointer-events:none;
+  animation:pillIn .25s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.verified-pill.off{
+  border-color:rgba(148,163,184,.35);
+  box-shadow:0 6px 20px rgba(0,0,0,.5);
+  color:#cbd5e1;
+}
+.verified-pill .vp-icon{
+  width:14px;height:14px;flex-shrink:0;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.verified-pill .vp-text{
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+@keyframes pillIn{
+  0%{opacity:0;transform:translate(-50%,-12px) scale(.94)}
+  100%{opacity:1;transform:translate(-50%,0) scale(1)}
+}
+@keyframes pillOut{
+  0%{opacity:1;transform:translate(-50%,0) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-8px) scale(.94)}
+}
+/* ====== MOD CONTAINER & SWITCH STYLING ====== */
+.mod-container{
+  background:radial-gradient(120% 120% at 50% 0%,rgba(28,32,60,.7) 0%,rgba(13,15,28,.95) 100%);
+  border:1px solid rgba(139,92,246,.35);
+  border-radius:20px;
+  padding:18px 16px;
+  box-shadow:0 12px 35px rgba(0,0,0,.5), inset 0 0 20px rgba(139,92,246,.08);
+}
+.mod-section-header{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:14px;padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  flex-wrap:wrap;
+}
+.mod-section-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:900;letter-spacing:.5px;
+  color:#f1f5f9;
+}
+.mod-icon-pulse{
+  font-size:18px;color:#facc15;
+  filter:drop-shadow(0 0 8px rgba(250,204,21,.6));
+}
+.mod-section-hint{
+  font-size:11.5px;color:#94a3b8;font-weight:600;
+  background:rgba(255,255,255,.05);padding:4px 10px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.mod-list{
+  display:grid;grid-template-columns:1fr;gap:12px;
+}
+@media(min-width:600px){
+  .mod-list{grid-template-columns:1fr 1fr;}
+}
+.mod-row-card{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:rgba(20,24,45,.65);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:14px 16px;
+  transition:all .25s ease;
+  position:relative;overflow:hidden;
+  cursor:pointer;
+  user-select:none;
+}
+.mod-row-card:hover{
+  border-color:rgba(139,92,246,.6);
+  background:rgba(255,255,255,.04);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.mod-row-card.active-card{
+  border-color:rgba(16,185,129,.75);
+  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(5,150,105,.05));
+  box-shadow:0 0 25px rgba(16,185,129,.25);
+}
+.mod-info-col{
+  flex:1;min-width:0;
+}
+.mod-name-row{
+  display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;
+}
+.mod-name{
+  font-size:14.5px;font-weight:800;color:#f8fafc;letter-spacing:.2px;
+}
+.mod-pill{
+  font-size:10px;font-weight:800;letter-spacing:.6px;padding:2px 8px;border-radius:6px;
+  text-transform:uppercase;white-space:nowrap;
+}
+.mod-pill.ffth{
+  background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.45);
+}
+.mod-pill.ffmax{
+  background:rgba(236,72,153,.2);color:#f9a8d4;border:1px solid rgba(236,72,153,.45);
+}
+.mod-desc{
+  font-size:11.5px;color:#94a3b8;line-height:1.4;margin-bottom:6px;
+}
+.mod-status-label{
+  font-size:11px;font-weight:700;color:#64748b;
+  display:flex;align-items:center;gap:5px;
+  transition:.2s ease;
+}
+.mod-status-label.loading{
+  color:#facc15;
+  animation:pulseStatus 1s infinite alternate;
+}
+.mod-status-label.on{
+  color:#34d399;
+  text-shadow:0 0 10px rgba(52,211,153,.5);
+}
+@keyframes pulseStatus{
+  from{opacity:.6}to{opacity:1}
+}
+
+/* MODERN TOGGLE SWITCH */
+.modern-switch{
+  position:relative;display:inline-block;width:52px;height:28px;flex-shrink:0;cursor:pointer;
+}
+.modern-switch input{
+  opacity:0;width:0;height:0;position:absolute;
+}
+.modern-slider{
+  position:absolute;inset:0;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:28px;
+  transition:.3s cubic-bezier(.4,0,.2,1);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.4);
+}
+.modern-slider::before{
+  position:absolute;content:"";
+  height:20px;width:20px;left:4px;bottom:3px;
+  background:#cbd5e1;
+  border-radius:50%;
+  transition:.3s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 2px 6px rgba(0,0,0,.45);
+}
+.switch-spinner{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+}
+.modern-switch.busy .switch-spinner{
+  display:flex;
+}
+.modern-switch.busy .modern-slider::before{
+  opacity:0;
+}
+.switch-spinner::after{
+  content:"";width:14px;height:14px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.3);border-top-color:#38bdf8;
+  animation:spin .6s linear infinite;
+}
+.modern-switch input:checked + .modern-slider{
+  background:linear-gradient(90deg,#10b981,#059669);
+  border-color:rgba(16,185,129,.7);
+  box-shadow:0 0 14px rgba(16,185,129,.55), inset 0 1px 2px rgba(255,255,255,.3);
+}
+.modern-switch input:checked + .modern-slider::before{
+  transform:translateX(24px);
+  background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.4);
+}
+
+/* ====== UPDATE v4 · CHỐNG PHÓNG TO / LỆCH GIAO DIỆN KHI CHẠM ====== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-y:none}
+body{touch-action:manipulation}
+button,a,.btn,.tab,.chip,label,summary,[role=button],[onclick]{
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+input,select,textarea{font-size:16px !important;-webkit-text-size-adjust:100%;max-width:100%}
+img,svg,video,canvas,table{max-width:100%}
+*{-webkit-touch-callout:none}
+input,select,textarea,[contenteditable]{-webkit-user-select:text;user-select:text}
+/* Bỏ hiệu ứng nhấc/nhảy trên thiết bị cảm ứng -> không còn cảm giác "lệch shop" */
+@media (hover:none){
+  .btn:hover,.btn:active{transform:none !important;box-shadow:none}
+  .card:hover{transform:none !important}
+}
+.btn:active{transform:scale(.99)}
+/* Cuộn mượt, không giật */
+.scroll,.keys-scroll,.list,.container{-webkit-overflow-scrolling:touch}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important}}
+
+/* ====== KHUNG TRONG SUỐT HIỂN THỊ KEY BỊ BAN (glass) ====== */
+.ban-key-frame{display:none;margin:10px 0 4px;padding:12px 14px;border-radius:16px;
+  border:1px solid rgba(239,68,68,.45);background:rgba(255,255,255,.10);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 10px 30px rgba(0,0,0,.18);text-align:left}
+.ban-key-frame.show{display:block;animation:bkfIn .22s ease-out}
+@keyframes bkfIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ban-key-frame .bkf-row{display:flex;align-items:center;gap:10px}
+.ban-key-frame .bkf-ic{width:32px;height:32px;flex:0 0 32px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.35)}
+.ban-key-frame .bkf-ic svg{width:16px;height:16px;opacity:.9}
+.ban-key-frame .bkf-l{font-size:11px;letter-spacing:1px;color:#8a1f2f;font-weight:800;text-transform:uppercase}
+.ban-key-frame .bkf-k{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;font-weight:800;color:#111;
+  word-break:break-all}
+.ban-key-frame .bkf-t{font-size:12px;color:#4b5563;margin-top:6px;display:flex;gap:6px;align-items:center}
+
+/* ====== UPDATE v5 · CUỘN MƯỢT · KHÔNG ĐỨNG TRANG ====== */
+html,body{
+  height:auto !important;min-height:100%;
+  overflow-y:auto !important;overflow-x:hidden;
+  overscroll-behavior-y:auto !important;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+}
+html,body,.wrap,.container,main,section{touch-action:pan-y pinch-zoom !important}
+body{position:static !important}
+/* Nền trang trí không được chặn thao tác cuộn */
+.stars,.floaters,.snowfall,body::before,body::after{pointer-events:none !important}
+/* Chỉ khoá chọn chữ ở nút bấm, phần còn lại vẫn cuộn/chọn bình thường */
+*{-webkit-touch-callout:default}
+p,span,div,td,th,li,h1,h2,h3,h4{-webkit-user-select:text;user-select:text}
+button,a,.btn,.tab,.chip,.ic,[role=button]{
+  -webkit-user-select:none;user-select:none;touch-action:manipulation}
+/* Nhẹ – không 3D, không giật */
+.btn,.card,.chip{will-change:auto;transition:background .15s ease,border-color .15s ease,opacity .15s ease}
+.btn:active{transform:scale(.985)}
+@media (hover:none){.btn:hover,.card:hover{transform:none !important}}
+
+/* ====== KHUNG CÓ THANH CUỘN RIÊNG: gọn gàng, dễ nhận biết ====== */
+.scroll,.keys-scroll,.rte-area,.ia-body,.modal,.modal-card,
+#hisFrame,#fkFrame,#sd_resets,#ms_resets,.tbl-scroll{
+  overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:rgba(124,92,255,.55) transparent}
+.scroll::-webkit-scrollbar,.keys-scroll::-webkit-scrollbar,.rte-area::-webkit-scrollbar,
+.ia-body::-webkit-scrollbar,.modal-card::-webkit-scrollbar,#hisFrame::-webkit-scrollbar,
+#fkFrame::-webkit-scrollbar,.tbl-scroll::-webkit-scrollbar{width:8px;height:8px}
+.scroll::-webkit-scrollbar-thumb,.keys-scroll::-webkit-scrollbar-thumb,
+.rte-area::-webkit-scrollbar-thumb,.ia-body::-webkit-scrollbar-thumb,
+.modal-card::-webkit-scrollbar-thumb,#hisFrame::-webkit-scrollbar-thumb,
+#fkFrame::-webkit-scrollbar-thumb,.tbl-scroll::-webkit-scrollbar-thumb{
+  background:rgba(124,92,255,.45);border-radius:999px}
+.scroll::-webkit-scrollbar-thumb:hover,.keys-scroll::-webkit-scrollbar-thumb:hover{
+  background:rgba(124,92,255,.75)}
+.scroll::-webkit-scrollbar-track,.keys-scroll::-webkit-scrollbar-track{background:transparent}
+/* Bảng dài -> cuộn ngang riêng, không đẩy lệch trang */
+table{max-width:100%}
+div[style*="overflow:auto"]{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+
+/* ====== TRÌNH SOẠN THẢO: HIỆN FULL TRÊN ĐIỆN THOẠI ====== */
+.rte,#banRte{width:100%;max-width:100%}
+.rte .rte-bar,#banRte .rte-bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:6px;
+  max-height:none;overflow:visible}
+.rte .rte-grp,#banRte .rte-grp{display:flex;align-items:center;gap:2px;padding:0 4px}
+@media (max-width:820px){
+  .rte .rte-bar,#banRte .rte-bar{gap:3px;padding:5px}
+  .rte .rte-grp,#banRte .rte-grp{padding:0 3px;border-right:0}
+  .rte button.rb,#banRte button.rb{min-width:30px;height:30px;font-size:14px}
+  .rte select.rs,#banRte select.rs{
+    height:30px;font-size:12px;padding:0 4px;flex:1 1 92px;min-width:0;max-width:140px}
+  .rte input[type=color],#banRte input[type=color]{width:30px;height:30px}
+  .rte .rte-area,#banRte .rte-area{
+    min-height:150px;max-height:52vh;padding:12px;font-size:16px}
+  .rte .rte-foot,#banRte .rte-foot{padding:5px 10px;font-size:11px}
+  .rte.fs,#banRte.fs{inset:8px}
+}
+@media (max-width:420px){
+  .rte button.rb,#banRte button.rb{min-width:28px;height:28px}
+  .rte select.rs,#banRte select.rs{flex:1 1 80px}
+}
+
+/* ====== UPDATE v6 · NỀN ĐEN TUYỀN CHO TOÀN SHOP ====== */
+:root{--bg-1:#000;--bg-2:#000}
+html,body{background:#000 !important}
+body::before,body::after{background:none !important}
+.card,.login-box,.modal,.list-item,.tabbar,.input,select,textarea{
+  background-color:rgba(255,255,255,.035) !important}
+.modal{background:#050505 !important}
+.stars i{opacity:.35}
+/* ====== BỎ NÉT ĐỨT (dashed) — nhìn sạch, hiện đại ====== */
+.status-ok .row2,.status-off .row2,.status-exp .row2,
+.freekey-history .row2{
+  border-bottom:1px solid rgba(255,255,255,.07) !important}
+.status-ok .row2:last-child,.status-off .row2:last-child,
+.status-exp .row2:last-child,.freekey-history .row2:last-child{border-bottom:0 !important}
+.freekey-history,.fk-key-modal .fk-key-box{border-style:solid !important}
+
+/* ===== V10 · THÔNG TIN KEY: BỎ HẾT GẠCH CHÂN ===== */
+.status-ok .row2,.status-off .row2,.status-exp .row2,
+.status-ok .row2:last-child,.status-off .row2:last-child,.status-exp .row2:last-child,
+.freekey-history .row2,.freekey-history .row2:last-child,
+.status-ok hr,.status-off hr,.status-exp hr{
+  border-bottom:0 !important;border-top:0 !important;box-shadow:none !important}
+.status-ok .row2,.status-off .row2,.status-exp .row2{padding:5px 0 !important}
+.status-ok u,.status-off u,.status-exp u{text-decoration:none !important}
+
+/* ===== V10 · KHUNG SỰ KIỆN KEY FREE — KÍNH MỜ TRONG SUỐT ===== */
+.freekey-box{
+  border:1px solid rgba(255,255,255,.14) !important;
+  background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02)) !important;
+  backdrop-filter:blur(18px) saturate(140%);
+  border-radius:20px !important;padding:16px !important;
+  box-shadow:0 12px 30px -18px rgba(0,0,0,.9)}
+.freekey-box .ic{
+  background:rgba(255,255,255,.08) !important;color:#e5e7eb !important;
+  border:1px solid rgba(255,255,255,.12);border-radius:14px !important}
+.freekey-box .info .t{color:#f8fafc}
+.freekey-box .info .s{color:rgba(226,232,240,.62) !important}
+.freekey-box .btn.small{
+  background:rgba(255,255,255,.10) !important;border:1px solid rgba(255,255,255,.20) !important;
+  color:#fff !important;border-radius:14px !important;backdrop-filter:blur(10px)}
+.freekey-box .btn.small:disabled{opacity:.45}
+.freekey-history{
+  border:1px solid rgba(255,255,255,.10) !important;
+  background:rgba(255,255,255,.03) !important;backdrop-filter:blur(14px);border-radius:18px !important}
+.freekey-history h4{color:#e2e8f0 !important}
+
+/* ===== V11 · DANH SÁCH MÁY CHỦ (hiện sau khi ACTIVE IP) ===== */
+#srvWrap{display:none;margin:16px 0 6px}
+.srv-card{border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:14px 12px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  backdrop-filter:blur(18px) saturate(150%)}
+.srv-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 4px 12px}
+.srv-head .ttl{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2.5px;
+  color:rgba(226,232,240,.72)}
+.srv-head .cnt{font-size:11px;padding:5px 12px;border-radius:999px;color:#e2e8f0;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+.srv-item{display:flex;gap:12px;padding:12px;border-radius:16px;margin-bottom:10px;
+  border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.035)}
+.srv-item:last-child{margin-bottom:0}
+.srv-no{min-width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-family:ui-monospace,Menlo,monospace;font-size:13px;font-weight:800;color:#67e8f9;
+  border:1px solid rgba(103,232,249,.28);background:rgba(103,232,249,.10)}
+.srv-body{flex:1;min-width:0}
+.srv-name{font-weight:800;font-size:14px;color:#f1f5f9}
+.srv-addr{margin-top:3px;font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#5eead4;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srv-copy{margin-top:10px;width:100%;padding:9px 12px;border-radius:12px;cursor:pointer;
+  font-size:13px;font-weight:700;color:#e2e8f0;border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.05);transition:.15s;-webkit-tap-highlight-color:transparent}
+.srv-copy:active{transform:scale(.98);background:rgba(255,255,255,.12)}
+.srv-copy.done{color:#86efac;border-color:rgba(134,239,172,.45);background:rgba(134,239,172,.12)}
+.srv-note{display:flex;gap:10px;align-items:center;margin-top:12px;padding:12px;border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.035);
+  font-size:12px;color:rgba(226,232,240,.75)}
+.srv-note .ic2{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(103,232,249,.28);background:rgba(103,232,249,.10)}
+
+/* ===== V11 · CẤU HÌNH IOS — KÍNH MỜ TRONG SUỐT ===== */
+#btnConfig,#btnVideo{
+  border:1px solid rgba(255,255,255,.12) !important;
+  background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02)) !important;
+  backdrop-filter:blur(16px) saturate(140%);border-radius:18px !important;
+  box-shadow:0 14px 30px -22px rgba(0,0,0,.9)}
+#btnConfig .ic,#btnVideo .ic{
+  background:rgba(255,255,255,.07) !important;border:1px solid rgba(255,255,255,.14);
+  border-radius:14px !important;color:#e2e8f0 !important;filter:saturate(.2) opacity(.95)}
+#btnConfig .arrow,#btnVideo .arrow{color:rgba(226,232,240,.55) !important}
+#btnConfig.locked{opacity:.55}
+#btnConfig:active,#btnVideo:active{transform:scale(.995)}
+
+.srv-cert{display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px;border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.035)}
+.srv-cert .ic2{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(103,232,249,.28);background:rgba(103,232,249,.10)}
+.srv-cert .tx{flex:1;font-weight:800;font-size:13px;color:#f1f5f9;line-height:1.25}
+.srv-cert a.dl{padding:9px 16px;border-radius:12px;font-size:13px;font-weight:800;color:#04121a;
+  text-decoration:none;background:linear-gradient(90deg,#67e8f9,#c084fc)}
+.srv-cert a.dl.off{pointer-events:none;opacity:.45;background:rgba(255,255,255,.10);color:#cbd5e1}
+
+.srv-dl-title{margin:14px 0 8px;font-size:12px;font-weight:900;letter-spacing:.10em;
+  color:#94a3b8;text-transform:uppercase}
+#srvWrap .list-item.locked{opacity:.45;pointer-events:none}
+
+/* V16 · BỎ ẢNH NỀN XUYÊN THẤU */
+.bg-photo{display:none !important}
+
+/* V16 · MÀU TAB THEO CHỨC NĂNG */
+.tabbar button{transition:.18s}
+.tabbar button.active{background:transparent;color:#fff}
+.tabbar button[data-tab="t1"].active{
+  background:linear-gradient(90deg,rgba(16,185,129,.55),rgba(45,212,191,.35));
+  border:1px solid rgba(16,185,129,.55);color:#d1fae5;
+  box-shadow:0 8px 24px -14px rgba(16,185,129,.9)}
+.tabbar button[data-tab="t2"].active{
+  background:linear-gradient(90deg,rgba(168,85,247,.75),rgba(139,92,246,.55));
+  border:1px solid rgba(168,85,247,.65);color:#f5e9ff;
+  box-shadow:0 8px 24px -14px rgba(168,85,247,.9)}
+.tabbar button[data-tab="t3"].active{
+  background:linear-gradient(90deg,rgba(245,158,11,.80),rgba(250,204,21,.55));
+  border:1px solid rgba(245,158,11,.65);color:#1a1204;
+  box-shadow:0 8px 24px -14px rgba(245,158,11,.9)}
+
+/* V16 · DANH SÁCH MÁY CHỦ gọn hơn */
+.srv-item .srv-name{font-weight:800}
+.srv-addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ===== SARANGHAEYO TOP HEADER ===== */
+.srh-top-header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 18px;
+  background:rgba(4,6,18,0.88);
+  backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  border-bottom:1px solid rgba(30,100,255,0.14);
+}
+.srh-header-left{display:flex;align-items:center;gap:10px}
+.srh-app-icon{
+  width:34px;height:34px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  display:flex;align-items:center;justify-content:center;
+}
+.srh-app-name{font-weight:800;font-size:14px;color:#fff;letter-spacing:.2px}
+.srh-app-sub{font-size:10.5px;color:rgba(180,200,255,0.55);margin-top:1px}
+.srh-header-right{display:flex;align-items:center;gap:10px}
+.srh-online-pill{
+  background:rgba(59,130,246,0.14);border:1px solid rgba(96,165,250,0.5);
+  color:#bfdbfe;padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:700;
+  box-shadow:0 0 12px rgba(59,130,246,0.18);
+}
+.srh-admin-link{color:rgba(180,200,255,0.65);font-size:12.5px;text-decoration:none;font-weight:600}
+.srh-admin-link:hover{color:#93c5fd}
+
+/* ===== CONTAINER PUSH DOWN BELOW HEADER ===== */
+.srh-container{padding-top:68px !important;max-width:520px;margin:0 auto}
+
+/* ===== TABBAR ===== */
+.srh-tabbar{
+  display:flex;background:rgba(8,12,28,0.6);backdrop-filter:blur(16px);
+  border-radius:16px;padding:5px;margin:0 12px 14px;gap:3px;
+  border:1px solid rgba(30,100,255,0.12);
+}
+.srh-tab{
+  flex:1;border:none;background:transparent;color:rgba(180,200,255,0.5);
+  font-size:11.5px;font-weight:600;padding:8px 4px;border-radius:11px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  transition:all .18s ease;white-space:nowrap;
+}
+.srh-tab:hover{color:rgba(255,255,255,0.8);background:rgba(30,100,255,0.08)}
+.srh-tab.active{
+  background:rgba(20,40,120,0.65);color:#fff;font-weight:700;
+  border:1px solid rgba(59,130,246,0.4);
+  box-shadow:0 4px 16px -6px rgba(37,99,235,0.6);
+}
+.srh-tab.active svg{stroke:#93c5fd}
+
+/* ===== TAB CONTENT ===== */
+.srh-tab-content{padding:0 12px}
+
+/* ===== BIG ICON ON HOME ===== */
+.srh-big-icon{
+  width:72px;height:72px;border-radius:20px;margin:0 auto 14px;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 36px -8px rgba(37,99,235,0.5);
+}
+.srh-big-title{
+  font-size:28px;font-weight:900;letter-spacing:-.5px;margin:0 0 6px;
+  background:linear-gradient(135deg,#93c5fd,#ffffff,#bfdbfe);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.srh-big-sub{color:rgba(180,200,255,0.55);font-size:13px;margin-bottom:14px}
+.srh-badges{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:10px 0}
+.srh-badge{
+  padding:5px 12px;border-radius:999px;font-size:11.5px;font-weight:600;
+  background:rgba(30,100,255,0.1);border:1px solid rgba(30,100,255,0.28);color:#93c5fd;
+  transition:all .18s ease;
+}
+.srh-badge:hover{transform:translateY(-1px);border-color:rgba(96,165,250,0.5);box-shadow:0 0 14px rgba(59,130,246,0.18)}
+.srh-badge.vip{
+  background:linear-gradient(135deg,rgba(96,165,250,0.22),rgba(59,130,246,0.3));
+  border-color:rgba(96,165,250,0.55);color:#dbeafe;
+  box-shadow:0 0 16px rgba(59,130,246,0.26);animation:vipPulse 2.2s ease-in-out infinite;
+}
+.srh-badge.green{background:rgba(59,130,246,0.12);border-color:rgba(96,165,250,0.42);color:#bfdbfe}
+@keyframes vipPulse{
+  0%,100%{box-shadow:0 0 10px rgba(59,130,246,0.18),0 0 0 rgba(59,130,246,0)}
+  50%{box-shadow:0 0 18px rgba(96,165,250,0.46),0 0 28px rgba(59,130,246,0.2)}
+}
+
+/* ===== SHORTCUT CARDS ===== */
+.srh-shortcut-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.srh-shortcut-card{
+  background:rgba(8,14,35,0.52);backdrop-filter:blur(16px);
+  border:1px solid rgba(30,100,255,0.16);border-radius:16px;
+  padding:14px 12px;cursor:pointer;transition:.2s;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.srh-shortcut-card:hover{border-color:rgba(59,130,246,0.45);background:rgba(20,50,150,0.14)}
+.srh-sc-left{display:flex;align-items:center;gap:10px;min-width:0}
+.srh-sc-icon{
+  width:36px;height:36px;flex-shrink:0;border-radius:10px;
+  background:rgba(30,100,255,0.14);display:flex;align-items:center;justify-content:center;
+}
+.srh-sc-title{font-weight:700;font-size:12.5px;color:#fff}
+.srh-sc-sub{font-size:10.5px;color:rgba(180,200,255,0.5);margin-top:2px}
+.srh-sc-arrow{color:rgba(180,200,255,0.4);font-size:22px;font-weight:300;flex-shrink:0}
+
+/* ===== HOW-TO STEPS ===== */
+.srh-howto-box{
+  background:rgba(5,8,22,0.5);backdrop-filter:blur(14px);
+  border:1px solid rgba(30,100,255,0.14);border-radius:14px;padding:14px;margin:12px 0;
+}
+.srh-howto-title{
+  font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
+  color:rgba(100,160,255,0.6);font-weight:700;margin-bottom:12px;
+}
+.srh-howto-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:12.5px;color:rgba(220,230,255,0.8);line-height:1.5}
+.srh-howto-step:last-child{margin-bottom:0}
+.srh-step-num{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  background:rgba(30,100,255,0.18);border:1px solid rgba(59,130,246,0.45);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:#93c5fd;margin-top:1px;
+}
+
+/* ===== SECTION CARDS ===== */
+.srh-section-card{
+  background:rgba(5,8,22,0.52);backdrop-filter:blur(18px);
+  border:1px solid rgba(30,100,255,0.16);border-radius:16px;padding:16px;
+}
+.srh-section-label{
+  font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
+  color:rgba(100,160,255,0.6);font-weight:700;margin-bottom:12px;
+}
+.srh-eyebrow{
+  font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+  color:rgba(100,160,255,0.6);font-weight:700;margin-bottom:8px;
+}
+.srh-tab-h2{font-size:22px;font-weight:800;color:#fff;margin:0 0 16px;letter-spacing:-.3px}
+
+/* ===== IP/INFO ROWS ===== */
+.srh-info-row{margin-bottom:10px}
+.srh-info-label{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:rgba(100,160,255,0.55);font-weight:700;margin-bottom:6px}
+.srh-info-value{font-size:22px;font-weight:800;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.5px}
+.srh-ip-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:rgba(180,200,255,0.6)}
+.srh-ip-label{font-weight:600}
+.srh-ip-val{font-family:ui-monospace,monospace;color:#93c5fd;font-weight:700}
+
+/* ===== COPY BUTTON ===== */
+.srh-copy-btn{
+  background:rgba(30,100,255,0.12);border:1px solid rgba(30,100,255,0.3);
+  color:#93c5fd;padding:7px 14px;border-radius:10px;font-size:11.5px;font-weight:700;
+  cursor:pointer;transition:.18s;white-space:nowrap;flex-shrink:0;
+}
+.srh-copy-btn:hover{background:rgba(30,100,255,0.25);border-color:rgba(59,130,246,.55)}
+
+/* ===== PASTE BUTTON ===== */
+.srh-paste-btn{
+  background:rgba(30,100,255,0.1);border:1px solid rgba(30,100,255,0.28);
+  color:#93c5fd;padding:0 16px;border-radius:12px;font-size:12.5px;font-weight:700;
+  cursor:pointer;transition:.18s;white-space:nowrap;flex-shrink:0;height:48px;
+}
+.srh-paste-btn:hover{background:rgba(30,100,255,0.22)}
+
+/* ===== PORT LIST ===== */
+.srh-port-list{display:flex;flex-direction:column;gap:8px}
+.srh-port-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 0;border-bottom:1px solid rgba(30,100,255,0.1);
+}
+.srh-port-row:last-child{border-bottom:none;padding-bottom:0}
+.srh-port-name{font-size:13px;font-weight:600;color:#e2e8f0}
+.srh-port-num{font-family:ui-monospace,monospace;font-size:16px;font-weight:800;color:#93c5fd;margin-top:2px}
+
+/* ===== SERVER BADGE ===== */
+.srh-server-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(30,100,255,0.1);border:1px solid rgba(30,100,255,0.3);
+  color:#93c5fd;padding:4px 12px;border-radius:8px;font-size:11px;
+  font-weight:700;letter-spacing:1px;margin:0 0 12px 12px;
+}
+
+/* ===== ACTION ITEM (cert + video) ===== */
+.srh-action-item{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(5,8,22,0.5);backdrop-filter:blur(14px);
+  border:1px solid rgba(30,100,255,0.15);border-radius:14px;
+  padding:14px;cursor:pointer;transition:.2s;margin:0 0 0 0;
+}
+.srh-action-item:hover{border-color:rgba(59,130,246,0.4)}
+.srh-action-icon{
+  width:42px;height:42px;border-radius:11px;flex-shrink:0;
+  background:rgba(30,100,255,0.13);display:flex;align-items:center;justify-content:center;
+}
+.srh-action-title{font-weight:700;font-size:12.5px;color:#fff}
+.srh-action-sub{font-size:11px;color:rgba(180,200,255,0.5);margin-top:3px}
+.srh-action-arrow{color:rgba(180,200,255,0.4);font-size:22px;font-weight:300;flex-shrink:0}
+
+/* ===== INPUTS SaRangHaeyo ===== */
+.srh-input{
+  width:100%;padding:13px 16px;border-radius:13px;font-size:14px;
+  background:rgba(8,12,30,0.65);backdrop-filter:blur(12px);
+  border:1px solid rgba(30,100,255,0.22);color:#fff;outline:none;
+  transition:.18s;box-sizing:border-box;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.srh-input:focus{border-color:rgba(59,130,246,0.6);box-shadow:0 0 0 3px rgba(37,99,235,0.15)}
+.srh-input::placeholder{color:rgba(180,200,255,0.3);font-family:inherit}
+.srh-field-label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:rgba(100,160,255,0.55);font-weight:700;margin-bottom:7px}
+
+/* ===== PRIMARY BUTTON ===== */
+.srh-btn-primary{
+  width:100%;padding:14px;border-radius:14px;border:none;font-size:15px;font-weight:800;
+  letter-spacing:.3px;cursor:pointer;transition:.2s;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6);
+  color:#fff;box-shadow:0 8px 24px -8px rgba(37,99,235,0.6);
+}
+.srh-btn-primary:hover{box-shadow:0 10px 28px -6px rgba(37,99,235,0.75);transform:translateY(-1px)}
+.srh-btn-primary:active{transform:translateY(0)}
+.srh-btn-primary.loading{opacity:.7;cursor:not-allowed}
+
+/* ===== FIX KEY BUTTON (purple) ===== */
+.srh-btn-fix{
+  width:100%;padding:14px;border-radius:14px;border:none;font-size:15px;font-weight:800;
+  letter-spacing:.5px;cursor:pointer;transition:.2s;
+  background:linear-gradient(135deg,#7c3aed,#8b5cf6,#a78bfa);
+  color:#fff;box-shadow:0 8px 24px -8px rgba(124,58,237,0.6);
+}
+.srh-btn-fix:hover{box-shadow:0 10px 28px -6px rgba(124,58,237,0.75);transform:translateY(-1px)}
+
+/* ===== RESET BUTTON (orange) ===== */
+.srh-btn-reset{
+  width:100%;padding:14px;border-radius:14px;border:none;font-size:15px;font-weight:800;
+  letter-spacing:.5px;cursor:pointer;transition:.2s;
+  background:linear-gradient(135deg,#d97706,#f59e0b,#fbbf24);
+  color:#1a0f00;box-shadow:0 8px 24px -8px rgba(217,119,6,0.6);
+}
+.srh-btn-reset:hover{box-shadow:0 10px 28px -6px rgba(217,119,6,0.75);transform:translateY(-1px)}
+
+/* ===== HINT NOTE ===== */
+.srh-hint-note{
+  font-size:12px;color:rgba(180,200,255,0.45);text-align:center;line-height:1.5;
+  background:rgba(5,8,22,0.4);border:1px solid rgba(30,100,255,0.1);
+  border-radius:12px;padding:10px 14px;
+}
+
+/* Refined translucent layout to match the SaRangHaeyo reference. */
+.srh-top-header{
+  width:calc(100% - 24px);max-width:520px;left:50%;right:auto;
+  transform:translateX(-50%);padding:10px 12px;
+  background:rgba(4,6,18,.18);border-bottom:0;
+}
+.srh-container{padding-top:78px !important;max-width:544px}
+.srh-tabbar{
+  background:rgba(17,18,27,.64);border-color:rgba(255,255,255,.10);
+  box-shadow:0 12px 32px rgba(0,0,0,.24);
+}
+.srh-tab{font-size:12px}
+.srh-tab.active{
+  background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.10);
+  box-shadow:inset 0 1px rgba(255,255,255,.06);
+}
+.srh-tab.active svg{stroke:#f1f5f9}
+.srh-section-card,.srh-howto-box,.srh-shortcut-card,.srh-hint-note{
+  background:rgba(18,19,27,.64);border-color:rgba(255,255,255,.10);
+  box-shadow:0 16px 38px rgba(0,0,0,.22);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+}
+.srh-section-label,.srh-eyebrow,.srh-field-label,.srh-info-label{
+  color:rgba(177,185,211,.62);
+}
+.srh-info-value{font-size:20px;letter-spacing:0}
+.srh-connection-status{
+  margin-top:8px;font-size:11.5px;line-height:1.5;
+  color:rgba(190,198,219,.58);
+}
+.srh-copy-btn:disabled{opacity:.42;cursor:not-allowed}
+.srh-port-list{gap:8px}
+.srh-port-row{
+  gap:12px;padding:12px;border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;background:rgba(255,255,255,.035);
+}
+.srh-port-row:last-child{padding-bottom:12px}
+.srh-port-details{min-width:0;flex:1}
+.srh-port-name{font-size:12.5px;color:#e5e7eb}
+.srh-port-address{
+  margin-top:4px;color:rgba(175,184,207,.58);font-size:11px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere;
+}
+.srh-port-num{font-size:14px;color:#c4b5fd;margin-top:5px}
+.srh-port-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.srh-copy-btn{
+  padding:7px 10px;background:rgba(139,92,246,.11);
+  border-color:rgba(139,92,246,.25);color:#c4b5fd;font-size:10px;
+}
+.srh-copy-port{min-width:48px}
+.srh-port-empty{
+  color:rgba(190,198,219,.55);font-size:12px;line-height:1.5;
+  padding:12px;border:1px dashed rgba(255,255,255,.12);border-radius:12px;
+}
+.srh-btn-primary{
+  background:linear-gradient(110deg,#7c3aed,#4f46e5);
+  box-shadow:0 8px 24px -8px rgba(124,58,237,.55);
+}
+.srh-action-item{background:rgba(18,19,27,.64);border-color:rgba(255,255,255,.10)}
+.srh-big-icon{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);box-shadow:none}
+.srh-big-title{
+  background:linear-gradient(110deg,#f8fafc,#c4b5fd);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.srh-badge{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.10);color:#aab1c5}
+.srh-badge.green{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.25);color:#6ee7b7}
+.srh-server-badge{margin-left:12px}
+@media(max-width:480px){
+  .srh-container{padding-top:72px !important}
+  .srh-tab{font-size:10px;gap:3px;padding:8px 2px}
+  .srh-port-row{align-items:flex-start}
+  .srh-port-actions{flex-direction:column;align-items:stretch}
+}
+
+/* Black-glass finish for the storefront palette. */
+html,body{background:#030303 !important}
+#constellationBg > div{
+  background:radial-gradient(ellipse at 50% 24%,rgba(18,18,20,.16) 0%,rgba(5,5,6,.78) 68%,rgba(2,2,3,.97) 100%) !important;
+}
+.srh-top-header{
+  background:rgba(4,4,5,.62);border-bottom:1px solid rgba(190,190,195,.08);
+  backdrop-filter:blur(20px) saturate(125%);
+  -webkit-backdrop-filter:blur(20px) saturate(125%);
+}
+.srh-language-picker{display:flex;align-items:center;gap:4px;padding:3px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(190,190,195,.12)}
+.srh-lang-btn{
+  display:grid;place-items:center;min-width:32px;height:28px;padding:0 6px;
+  border:1px solid transparent;border-radius:8px;background:transparent;
+  color:#d5dce8;font:inherit;font-size:16px;cursor:pointer;opacity:.62;
+  transition:background .18s ease,border-color .18s ease,opacity .18s ease,transform .18s ease;
+}
+.srh-lang-btn:hover{opacity:1;transform:translateY(-1px)}
+.srh-lang-btn.active{opacity:1;background:rgba(27,43,64,.55);border-color:rgba(153,170,194,.2);box-shadow:inset 0 1px rgba(255,255,255,.06)}
+.srh-section-card,.srh-howto-box,.srh-shortcut-card,.srh-hint-note,.srh-action-item{
+  background:rgba(8,8,9,.76) !important;border-color:rgba(190,190,195,.11) !important;
+  box-shadow:0 16px 38px rgba(0,0,0,.34);
+}
+.mod-container{
+  background:linear-gradient(145deg,rgba(15,15,16,.82),rgba(7,7,8,.88)) !important;
+  border-color:rgba(190,190,195,.13) !important;
+  box-shadow:0 12px 35px rgba(0,0,0,.46),inset 0 0 18px rgba(180,180,185,.018) !important;
+}
+.mod-row-card{background:rgba(255,255,255,.022) !important;border-color:rgba(190,190,195,.12) !important}
+.srh-app-icon{background:linear-gradient(135deg,#252529,#111113);border:1px solid rgba(190,190,195,.18)}
+.srh-online-pill{
+  background:rgba(25,25,27,.64);border-color:rgba(190,190,195,.2);
+  color:#e0e0e3;box-shadow:0 0 12px rgba(0,0,0,.2);
+}
+.srh-shortcut-card:hover{background:rgba(20,20,22,.86) !important;border-color:rgba(190,190,195,.2) !important}
+.srh-tabbar{background:rgba(12,12,14,.82);border-color:rgba(190,190,195,.12)}
+.srh-tab.active{background:rgba(37,37,40,.76);border-color:rgba(190,190,195,.17);box-shadow:inset 0 1px rgba(255,255,255,.05)}
+.srh-tab.active svg{stroke:#e2e2e5}
+.srh-copy-btn,.srh-paste-btn{
+  background:rgba(28,28,31,.7);border-color:rgba(190,190,195,.18);color:#d5d5d9;
+}
+.srh-copy-btn:hover,.srh-paste-btn:hover{background:rgba(43,43,47,.82);border-color:rgba(205,205,210,.26)}
+.srh-port-row{background:rgba(255,255,255,.018);border-color:rgba(190,190,195,.1)}
+.srh-port-num{color:#d1d1d5}
+.srh-badge{background:rgba(255,255,255,.028);border-color:rgba(190,190,195,.13);color:#c9c9ce}
+.srh-badge.vip{
+  background:linear-gradient(135deg,rgba(46,46,50,.78),rgba(20,20,22,.84));
+  border-color:rgba(200,200,205,.27);color:#e1e1e5;
+  box-shadow:0 0 14px rgba(0,0,0,.42);animation:vipPulse 2.8s ease-in-out infinite;
+}
+.srh-badge.green{background:rgba(36,36,39,.48);border-color:rgba(190,190,195,.17);color:#d0d0d4}
+.srh-big-icon{background:rgba(24,24,27,.68);border-color:rgba(190,190,195,.16)}
+.srh-big-title{
+  display:inline-block;
+  background-image:linear-gradient(110deg,#fff,#d5d5d9);
+  -webkit-background-clip:text !important;background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+}
+.srh-btn-primary,.srh-btn-fix,.srh-btn-reset{
+  background:linear-gradient(135deg,#303034,#19191c);color:#f0f0f2;
+  border:1px solid rgba(190,190,195,.16);box-shadow:0 8px 24px -8px rgba(0,0,0,.55);
+}
+.srh-btn-primary:hover,.srh-btn-fix:hover,.srh-btn-reset:hover{background:linear-gradient(135deg,#3b3b40,#222225)}
+.srh-input{background:rgba(5,5,6,.76);border-color:rgba(190,190,195,.15)}
+.srh-input:focus{border-color:rgba(200,200,205,.28);box-shadow:0 0 0 3px rgba(170,170,175,.08)}
+@media(prefers-reduced-motion:reduce){.srh-badge.vip,.srh-lang-btn{animation:none;transition:none}}
+.srh-hero-contact-card{
+  width:min(100%,360px);margin:10px auto 14px;padding:4px 8px;
+  text-align:center;background:transparent;border:0;border-radius:0;box-shadow:none;
+}
+.srh-hero-contact-title{margin:0 0 8px;color:#e3e3e6;font-size:12px;font-weight:750}
+.srh-hero-contact-list{display:flex;flex-direction:row;justify-content:center;align-items:center;gap:24px}
+.srh-contact-row{
+  display:flex;align-items:center;gap:7px;min-height:30px;padding:2px 0;
+  color:#d5d8df;text-decoration:none;transition:color .18s ease;
+}
+.srh-contact-row:hover{color:#fff}
+.srh-contact-link{
+  display:grid;place-items:center;width:24px;height:24px;flex:0 0 24px;border-radius:0;
+  color:#d5d8df;background:transparent;border:0;transition:color .18s ease,transform .18s ease;
+}
+.srh-contact-link svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.srh-contact-name{font-size:12.5px;font-weight:550}
+.srh-contact-zalo:hover .srh-contact-link{color:#4d9dff;transform:translateX(1px)}
+.srh-contact-telegram:hover .srh-contact-link{color:#48b9ed;transform:translateX(1px)}
+@media(prefers-reduced-motion:reduce){.srh-contact-row,.srh-contact-link{transition:none}}
+</style>
+<style id="modSwitchStyles">
+/* ====== CHỨC NĂNG MOD ALOK VIP & ANTIBAND VIP iOS SWITCH PRO ====== */
+.mod-container{
+  background:radial-gradient(120% 120% at 50% 0%,rgba(28,32,60,.75) 0%,rgba(13,15,28,.95) 100%) !important;
+  border:1px solid rgba(139,92,246,.35) !important;
+  border-radius:20px !important;
+  padding:16px !important;
+  margin-top:14px !important;
+  box-shadow:0 12px 35px rgba(0,0,0,.5), inset 0 0 20px rgba(139,92,246,.08) !important;
+}
+.mod-section-header{
+  display:flex !important;align-items:center !important;justify-content:space-between !important;
+  gap:10px !important;margin-bottom:12px !important;padding-bottom:10px !important;
+  border-bottom:1px solid rgba(255,255,255,.08) !important;
+}
+.mod-section-title{
+  display:flex !important;align-items:center !important;gap:8px !important;
+  font-size:14.5px !important;font-weight:900 !important;letter-spacing:.5px !important;
+  color:#f1f5f9 !important;
+}
+.mod-icon-pulse{
+  font-size:17px !important;color:#facc15 !important;
+  filter:drop-shadow(0 0 8px rgba(250,204,21,.6)) !important;
+}
+.mod-section-hint{
+  font-size:11px !important;color:#94a3b8 !important;font-weight:600 !important;
+  background:rgba(255,255,255,.06) !important;padding:3px 9px !important;border-radius:12px !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+}
+.mod-list{
+  display:flex !important;flex-direction:column !important;gap:10px !important;
+}
+.mod-row-card{
+  display:flex !important;align-items:center !important;justify-content:space-between !important;gap:12px !important;
+  background:rgba(18,22,38,.7) !important;
+  border:1.5px solid rgba(255,255,255,.09) !important;
+  border-radius:16px !important;padding:13px 15px !important;
+  transition:all .25s ease !important;
+  cursor:pointer !important;user-select:none !important;position:relative !important;
+}
+.mod-row-card:hover{
+  border-color:rgba(139,92,246,.5) !important;
+  background:rgba(25,30,52,.8) !important;
+  transform:translateY(-1px) !important;
+}
+.mod-row-card.active-card{
+  border-color:rgba(16,185,129,.85) !important;
+  background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(5,150,105,.06)) !important;
+  box-shadow:0 0 22px rgba(16,185,129,.28), inset 0 0 14px rgba(16,185,129,.08) !important;
+}
+.mod-info-col{
+  flex:1 1 auto !important;min-width:0 !important;
+}
+.mod-name-row{
+  display:flex !important;align-items:center !important;gap:8px !important;margin-bottom:3px !important;flex-wrap:wrap !important;
+}
+.mod-name{
+  font-size:14.5px !important;font-weight:800 !important;color:#f8fafc !important;letter-spacing:.2px !important;
+}
+.mod-pill{
+  font-size:9.5px !important;font-weight:800 !important;letter-spacing:.5px !important;padding:2px 7px !important;border-radius:6px !important;
+  text-transform:uppercase !important;white-space:nowrap !important;
+}
+.mod-pill.ffth{
+  background:rgba(59,130,246,.2) !important;color:#93c5fd !important;border:1px solid rgba(59,130,246,.45) !important;
+}
+.mod-pill.ffmax{
+  background:rgba(236,72,153,.2) !important;color:#f9a8d4 !important;border:1px solid rgba(236,72,153,.45) !important;
+}
+.mod-desc{
+  font-size:11.5px !important;color:#94a3b8 !important;line-height:1.35 !important;margin-bottom:5px !important;
+}
+.mod-status-label{
+  font-size:11px !important;font-weight:700 !important;color:#64748b !important;
+  display:flex !important;align-items:center !important;gap:5px !important;
+  transition:all .2s ease !important;
+}
+.mod-status-label.loading{color:#facc15 !important;}
+.mod-status-label.on{
+  color:#34d399 !important;text-shadow:0 0 10px rgba(52,211,153,.5) !important;
+}
+.mod-switch-col{
+  flex-shrink:0 !important;display:flex !important;align-items:center !important;
+}
+
+/* NÚT BẬT TẮT QUA LẠI CHUẨN iOS SWITCH TOGGLE */
+.modern-switch{
+  position:relative !important;display:inline-block !important;
+  width:52px !important;height:30px !important;
+  flex-shrink:0 !important;cursor:pointer !important;margin:0 !important;
+  vertical-align:middle !important;
+}
+.modern-switch input[type="checkbox"]{
+  position:absolute !important;opacity:0 !important;width:0 !important;height:0 !important;
+  margin:0 !important;pointer-events:none !important;
+}
+.modern-slider{
+  position:absolute !important;inset:0 !important;
+  background:rgba(255,255,255,.18) !important;
+  border:1.5px solid rgba(255,255,255,.25) !important;
+  border-radius:30px !important;
+  transition:background .25s ease, border-color .25s ease, box-shadow .25s ease !important;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.35) !important;
+  cursor:pointer !important;display:block !important;
+}
+.modern-slider::before{
+  position:absolute !important;content:"" !important;
+  height:22px !important;width:22px !important;
+  left:3px !important;top:2.5px !important;
+  background:#ffffff !important;border-radius:50% !important;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), background .25s ease !important;
+  box-shadow:0 2px 6px rgba(0,0,0,.45) !important;
+}
+.modern-switch input:checked + .modern-slider,
+.modern-switch.checked .modern-slider{
+  background:linear-gradient(90deg,#10b981,#059669) !important;
+  border-color:rgba(16,185,129,.9) !important;
+  box-shadow:0 0 16px rgba(16,185,129,.65), inset 0 1px 2px rgba(255,255,255,.3) !important;
+}
+.modern-switch input:checked + .modern-slider::before,
+.modern-switch.checked .modern-slider::before{
+  transform:translateX(22px) !important;
+  background:#ffffff !important;
+  box-shadow:0 2px 8px rgba(0,0,0,.4) !important;
+}
+.modern-switch.busy .modern-slider::before{
+  opacity:0 !important;
+}
+.modern-switch.busy .switch-spinner{
+  display:block !important;
+}
+.switch-spinner{
+  display:none;position:absolute;left:7px;top:6px;width:15px;height:15px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.35);border-top-color:#38bdf8;
+  animation:spin .6s linear infinite;
+}
+.verified-pill{
+  position:fixed !important;top:max(16px, env(safe-area-inset-top, 16px)) !important;left:50% !important;
+  transform:translateX(-50%) !important;display:inline-flex !important;align-items:center !important;
+  gap:8px !important;padding:8px 18px !important;border-radius:999px !important;
+  background:rgba(13,17,32,.95) !important;border:1.5px solid rgba(16,185,129,.7) !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.6), 0 0 20px rgba(16,185,129,.35) !important;
+  backdrop-filter:blur(20px) !important;-webkit-backdrop-filter:blur(20px) !important;
+  color:#fff !important;font-size:13px !important;font-weight:800 !important;letter-spacing:.2px !important;
+  white-space:nowrap !important;max-width:calc(100vw - 32px) !important;z-index:999999 !important;
+  pointer-events:none !important;animation:pillIn .28s cubic-bezier(.2,.8,.2,1) forwards !important;
+}
+.verified-pill.off{
+  border-color:rgba(148,163,184,.4) !important;box-shadow:0 10px 30px rgba(0,0,0,.6) !important;color:#cbd5e1 !important;
+}
+.verified-pill .vp-icon{
+  width:18px !important;height:18px !important;flex-shrink:0 !important;
+  display:inline-flex !important;align-items:center !important;justify-content:center !important;
+}
+.verified-pill .vp-text{white-space:nowrap !important;overflow:hidden !important;text-overflow:ellipsis !important;}
+@keyframes pillIn{0%{opacity:0;transform:translate(-50%,-14px) scale(.92)}100%{opacity:1;transform:translate(-50%,0) scale(1)}}
+@keyframes pillOut{0%{opacity:1;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,-10px) scale(.92)}}
+/* CONSTELLATION FIELD & GLASSMORPHISM PRO (XUYÊN THẤU) */
+html,body{background:#03040b !important;position:relative;overflow-x:hidden}
+.bg-photo{display:none !important}
+.stars,.floaters{display:none !important}
+.container{position:relative;z-index:2}
+.card{
+  background:rgba(12,16,33,0.52) !important;
+  backdrop-filter:blur(22px) saturate(190%) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(190%) !important;
+  border:1px solid rgba(230,200,121,0.22) !important;
+  box-shadow:0 18px 45px -12px rgba(0,0,0,0.65),0 0 25px -4px rgba(230,200,121,0.12) !important;
+}
+.mod-container{
+  background:rgba(10,14,30,0.55) !important;
+  backdrop-filter:blur(20px) !important;
+  -webkit-backdrop-filter:blur(20px) !important;
+  border:1px solid rgba(230,200,121,0.20) !important;
+  box-shadow:0 10px 30px rgba(0,0,0,0.45) !important;
+}
+.mod-row-card{
+  background:rgba(18,22,44,0.45) !important;
+  backdrop-filter:blur(14px) !important;
+  -webkit-backdrop-filter:blur(14px) !important;
+  border:1px solid rgba(230,200,121,0.14) !important;
+}
+.mod-row-card:hover{
+  border-color:rgba(230,200,121,0.45) !important;
+  box-shadow:0 6px 20px rgba(230,200,121,0.15) !important;
+}
+.ios-config-card{
+  background:rgba(12,16,33,0.55) !important;
+  backdrop-filter:blur(20px) !important;
+  -webkit-backdrop-filter:blur(20px) !important;
+  border:1px solid rgba(230,200,121,0.22) !important;
+}
+.status-ok{
+  background:rgba(16,185,129,0.12) !important;
+  backdrop-filter:blur(14px) !important;
+  border:1px solid rgba(16,185,129,0.4) !important;
+}
+.status-warn{
+  background:rgba(245,158,11,0.12) !important;
+  backdrop-filter:blur(14px) !important;
+  border:1px solid rgba(245,158,11,0.4) !important;
+}
+.status-exp{
+  background:rgba(239,68,68,0.12) !important;
+  backdrop-filter:blur(14px) !important;
+  border:1px solid rgba(239,68,68,0.4) !important;
+}
+</style></head>
+<body>
+<!-- CONSTELLATION FIELD BACKGROUND (CANVAS + PARTICLES) -->
+<div id="constellationBg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;overflow:hidden">
+<canvas id="constellationCanvas" style="display:block;width:100vw;height:100vh;pointer-events:none;"></canvas>
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 25%,rgba(30,100,255,0.07) 0%,rgba(4,6,18,0.78) 70%,rgba(2,3,10,0.96) 100%);pointer-events:none"></div>
+</div>
+<!-- TOP HEADER - SaRangHaeyo style -->
+<div class="srh-top-header">
+<div class="srh-header-left">
+<div class="srh-app-icon">
+<svg fill="none" height="20" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+</div>
+<div>
+<div class="srh-app-name">SaRangHaeyo</div>
+<div class="srh-app-sub">Free Fire iOS</div>
+</div>
+</div>
+<div class="srh-header-right">
+<span class="srh-online-pill">● Online</span>
+<div aria-label="Language" class="srh-language-picker" role="group">
+<button aria-label="Tiếng Việt" class="srh-lang-btn" data-lang="vi" title="Tiếng Việt" type="button">🇻🇳</button>
+<button aria-label="English" class="srh-lang-btn" data-lang="en" title="English" type="button">🇬🇧</button>
+</div>
+</div>
+</div>
+<div class="stars"></div>
+<div class="floaters"></div>
+<div class="container srh-container">
+<div id="liveToastHost"></div>
+<div id="centerPopHost"></div>
+<!-- TABBAR -->
+<div class="srh-tabbar">
+<button class="srh-tab active" data-tab="t1" type="button">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="14"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      Trang chủ
+    </button>
+<button class="srh-tab" data-tab="t2" type="button">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg>
+      Cài đặt
+    </button>
+<button class="srh-tab" data-tab="t3" type="button">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="14"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+      Fix Lỗi Key
+    </button>
+<button class="srh-tab" data-tab="t4" type="button">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="14"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-3.51"></path></svg>
+      Reset máy
+    </button>
+</div>
+<!-- ============================================================ -->
+<!-- TAB T1: TRANG CHỦ -->
+<!-- ============================================================ -->
+<div class="srh-tab-content" id="t1">
+<div style="text-align:center;padding:28px 0 18px">
+<div class="srh-big-icon">
+<svg fill="none" height="32" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="32"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+</div>
+<h1 class="srh-big-title">SaRangHaeyo</h1>
+<p class="srh-big-sub">Proxy cho Free Fire iOS · Cài đặt nhanh, kích hoạt đơn giản.</p>
+<div aria-label="Liên hệ" class="srh-hero-contact-card" role="group">
+<div class="srh-hero-contact-title">Liên hệ</div>
+<div class="srh-hero-contact-list">
+<a aria-label="Mở Zalo" class="srh-contact-row srh-contact-zalo" href="https://zalo.me/0964834722" rel="noopener noreferrer" target="_blank" title="Zalo">
+<span aria-hidden="true" class="srh-contact-link">
+<svg viewbox="0 0 24 24"><path d="M12 3.5c-4.7 0-8.5 3.3-8.5 7.5 0 2 1 3.9 2.8 5.2l-.6 3 3.2-1.5c1 .4 2.1.6 3.1.6 4.7 0 8.5-3.3 8.5-7.4S16.7 3.5 12 3.5Z"></path><path d="M8.5 8.5h7l-7 6h7"></path></svg>
+</span>
+<span class="srh-contact-name">Zalo</span>
+</a>
+<a aria-label="Mở Telegram" class="srh-contact-row srh-contact-telegram" href="https://t.me/SHOPDHP" rel="noopener noreferrer" target="_blank" title="Telegram">
+<span aria-hidden="true" class="srh-contact-link">
+<svg viewbox="0 0 24 24"><path d="m21 4-3.2 16-6.1-4.7-3.2 3.1.5-5.2L18 6.1 7.3 12.6 3 11.1 21 4Z"></path></svg>
+</span>
+<span class="srh-contact-name">Telegram</span>
+</a>
+</div>
+</div>
+<div class="srh-badges">
+<span class="srh-badge vip">VIP</span>
+<span class="srh-badge">#Proxy+Patch</span>
+<span class="srh-badge">Không VPN</span>
+<span class="srh-badge">#Proxy</span>
+<span class="srh-badge">Antiband</span>
+</div>
+</div>
+<!-- SHORTCUT CARDS -->
+<div class="srh-shortcut-grid">
+<div class="srh-shortcut-card" onclick="document.querySelector('[data-tab=t2]').click()">
+<div class="srh-sc-left">
+<div class="srh-sc-icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg>
+</div>
+<div>
+<div class="srh-sc-title">Cài đặt VPN</div>
+<div class="srh-sc-sub">Profile · Chứng chỉ · 5 phút</div>
+</div>
+</div>
+<div class="srh-sc-arrow">›</div>
+</div>
+<div class="srh-shortcut-card" onclick="document.querySelector('[data-tab=t3]').click()">
+<div class="srh-sc-left">
+<div class="srh-sc-icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+</div>
+<div>
+<div class="srh-sc-title">Fix Lỗi Key</div>
+<div class="srh-sc-sub">Đổi key đang lỗi · Key mới</div>
+</div>
+</div>
+<div class="srh-sc-arrow">›</div>
+</div>
+</div>
+<!-- HOW-TO STEPS -->
+<div class="srh-howto-box">
+<div class="srh-howto-title">CÁCH HOẠT ĐỘNG</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">1</div>
+<div>Xong rồi vào Wi-Fi cài tay. Nếu anh em dùng 4G/5G thì lên App Store tải app Potaso về cài nhé!</div>
+</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">2</div>
+<div>Bật tin cậy chứng chỉ: <b>Cài đặt → Chung → Giới thiệu → Tin cậy chứng nhận</b> → bật <b>mitmproxy</b>.</div>
+</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">3</div>
+<div>Nhập <b>KEY</b> vào game → patch tự lề, tính năng bật ngay trong game.</div>
+</div>
+</div>
+<!-- KEY ACTIVATION SECTION -->
+<div class="srh-section-card" style="margin-top:14px">
+<div class="srh-section-label">KÍCH HOẠT KEY</div>
+<div class="srh-ip-row">
+<span class="srh-ip-label">IP của bạn</span>
+<span class="srh-ip-val">113.167.113.67</span>
+</div>
+<div id="statusBox"></div>
+<div class="mini" id="ipAutoNote" style="display:none;margin-top:8px;padding:10px 12px;border-radius:12px;border:1px solid rgba(59,130,246,.45);background:rgba(59,130,246,.12);color:#bfdbfe"></div>
+<div style="margin-top:12px">
+<div class="srh-field-label">Key bản quyền</div>
+<input autocomplete="off" class="srh-input" id="keyInput" placeholder="Dán key của bạn vào đây..."/>
+</div>
+<div style="display:flex;gap:8px;align-items:stretch;margin-top:10px">
+<button class="srh-btn-primary" id="btnActivate" style="flex:1" type="button">⚡ Kích Hoạt Key</button>
+<button id="btnDeleteKey" style="background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.55);color:#fca5a5;border-radius:12px;padding:0 14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.15s;min-width:48px" title="Xoá key đã lưu" type="button">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+</button>
+</div>
+<div id="msg" style="margin-top:10px;min-height:22px"></div>
+</div>
+<!-- FREE KEY -->
+<div class="freekey-box">
+<div class="ic">🎁</div>
+<div class="info">
+<div class="t">Sự kiện Key Free</div>
+<div class="s">Tự do nhận · Key dùng 2 tiếng · Cooldown 15 giờ/thiết bị</div>
+<div class="s" id="fkCountdown">Đang tải trạng thái...</div>
+</div>
+<button class="btn small" disabled="" id="btnFreekey" type="button">Nhận Key</button>
+</div>
+<div id="fkMsg" style="min-height:20px"></div>
+</div>
+<!-- ============================================================ -->
+<!-- TAB T2: CÀI ĐẶT -->
+<!-- ============================================================ -->
+<div class="srh-tab-content" id="t2" style="display:none">
+<div class="srh-server-badge">◆ SERVER PROXY</div>
+<div class="srh-section-card">
+<div class="srh-section-label">THÔNG TIN KẾT NỐI</div>
+<div class="srh-info-row">
+<div class="srh-info-label">ĐỊA CHỈ IP</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+<div class="srh-info-value" id="srhSettingsIp">Chưa kết nối</div>
+<button class="srh-copy-btn" disabled="" id="srhCopyIp" type="button">COPY</button>
+</div>
+<div aria-live="polite" class="srh-connection-status" id="srhConnectionStatus" role="status">
+          Kích hoạt key hợp lệ để xem thông tin máy chủ.
+        </div>
+</div>
+</div>
+<!-- ALL PORTS LIST -->
+<div class="srh-section-card" style="margin-top:10px">
+<div class="srh-section-label">DANH SÁCH CHỨC NĂNG &amp; CỔNG (PORT)</div>
+<div aria-live="polite" class="srh-port-list" id="srhProxyList">
+<div class="srh-port-empty">Danh sách sẽ hiển thị sau khi IP được kích hoạt.</div>
+</div>
+</div>
+<!-- MANUAL STEPS -->
+<div class="srh-section-card" style="margin-top:10px">
+<div class="srh-section-label">CÁCH CÀI ĐẶT THỦ CÔNG</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">1</div>
+<div>Vào <b>Cài đặt → Wi-Fi</b> → bấm vào mạng Wi-Fi đang dùng → kéo xuống <b>Cấu hình proxy</b> → chọn <b>Thủ công</b>.</div>
+</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">2</div>
+<div>Nhập <b>Máy chủ (Server):</b> địa chỉ IP hiển thị trong mục <b>Thông tin kết nối</b>.</div>
+</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">3</div>
+<div>Nhập <b>Cổng (Port)</b> tương ứng với chức năng bạn chọn trong danh sách phía trên.</div>
+</div>
+<div class="srh-howto-step">
+<div class="srh-step-num">4</div>
+<div>Bấm <b>Lưu</b> → mở game. <b>Xong!</b></div>
+</div>
+<div style="margin-top:10px;font-size:12px;color:rgba(180,200,255,.55)">
+        Mẹo: Tải profile sẽ tự động điền IP/Port, không cần nhập tay.
+      </div>
+</div>
+<!-- ACTION BUTTONS -->
+<div class="srh-action-item" id="btnConfig" onclick="this.classList.contains('locked') ? null : window.location.href='/config/download'" style="display:none">
+<div class="srh-action-icon">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+</div>
+<div style="flex:1">
+<div class="srh-action-title">CÀI CHỨNG CHỈ TIN CẬY (.mobileconfig)</div>
+<div class="srh-action-sub" id="cfgHint">Cần Kích Hoạt Key để mở khoá</div>
+</div>
+<div class="srh-action-arrow">›</div>
+</div>
+<div class="srh-action-item" id="btnVideo" style="margin-top:8px">
+<div class="srh-action-icon" style="background:rgba(239,68,68,.15)">
+<svg fill="none" height="22" stroke="#f87171" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+</div>
+<div style="flex:1">
+<div class="srh-action-title">XEM VIDEO HƯỚNG DẪN</div>
+<div class="srh-action-sub">Xem từng bước cài đặt chi tiết</div>
+</div>
+<div class="srh-action-arrow">›</div>
+</div>
+</div>
+<!-- ============================================================ -->
+<!-- TAB T3: FIX LỖI KEY -->
+<!-- ============================================================ -->
+<div class="srh-tab-content" id="t3" style="display:none">
+<div class="srh-section-card">
+<div class="srh-eyebrow">CHUYỂN ĐỔI KEY BỊ LỖI</div>
+<h2 class="srh-tab-h2">Fix Lỗi Key</h2>
+<div class="srh-howto-step"><div class="srh-step-num">1</div><div>Dán KEY bị lỗi vào ô bên dưới.</div></div>
+<div class="srh-howto-step"><div class="srh-step-num">2</div><div>Bấm <b>FIX KEY</b> — hệ thống sẽ tạo key mới cùng thời hạn.</div></div>
+<div class="srh-howto-step"><div class="srh-step-num">3</div><div>Copy key mới → nhập vào game → kích hoạt bình thường.</div></div>
+<div style="margin-top:16px">
+<div class="srh-field-label">KEY BỊ LỖI</div>
+<div style="display:flex;gap:8px">
+<input autocomplete="off" class="srh-input" id="fixKeyInput" placeholder="XXXX-XXXX-XXXX-XXXX" style="flex:1"/>
+<button class="srh-paste-btn" onclick="window.pasteFixKey()">DÁN</button>
+</div>
+</div>
+<button class="srh-btn-fix" onclick="window.doFixKey()" style="margin-top:14px">FIX KEY</button>
+<div id="fixKeyMsg" style="margin-top:12px;min-height:20px"></div>
+<div class="srh-hint-note" style="margin-top:14px">
+        Key mới được tạo cùng thời hạn với key cũ. Key cũ sẽ bị vô hiệu.
+      </div>
+</div>
+</div>
+<!-- ============================================================ -->
+<!-- TAB T4: RESET MÁY -->
+<!-- ============================================================ -->
+<div class="srh-tab-content" id="t4" style="display:none">
+<div class="srh-section-card">
+<div class="srh-eyebrow">ĐỔI MÁY / GỠ THIẾT BỊ CŨ</div>
+<h2 class="srh-tab-h2">Reset key sang máy mới</h2>
+<div class="srh-howto-step"><div class="srh-step-num">1</div><div>Dán <b>KEY</b> cần reset vào ô bên dưới.</div></div>
+<div class="srh-howto-step"><div class="srh-step-num">2</div><div>Bấm <b>RESET MÁY</b> — key sẽ được gỡ khỏi máy cũ.</div></div>
+<div class="srh-howto-step"><div class="srh-step-num">3</div><div>Vào tab <b>Fix Lỗi Key</b> nếu cần đổi key, nhập key mới vào game.</div></div>
+<div style="margin-top:16px">
+<div class="srh-field-label">KEY</div>
+<div style="display:flex;gap:8px">
+<input autocomplete="off" class="srh-input" id="resetKeyInput" placeholder="XXXX-XXXX-XXXX-XXXX" style="flex:1"/>
+<button class="srh-paste-btn" onclick="window.pasteResetKey()">DÁN</button>
+</div>
+</div>
+<button class="srh-btn-reset" onclick="window.doResetMachine()" style="margin-top:14px">RESET MÁY</button>
+<div id="resetKeyMsg" style="margin-top:12px;min-height:20px"></div>
+</div>
+<div class="srh-hint-note" style="margin-top:10px">
+      Mỗi key chỉ được reset <b>3 lần / 10 phút</b>.
+    </div>
+</div>
+<div style="text-align:center;color:rgba(180,200,255,.3);font-size:11px;margin:18px 0 60px">
+    SaRangHaeyo ©2025 · All rights reserved
+  </div>
+</div>
+<div class="modal-bg" id="videoModal">
+<div class="modal">
+<h3 style="margin-top:0">Video hướng dẫn cài cấu hình iOS</h3>
+<p class="mini">Mở link bên dưới (hoặc dán vào Safari):</p>
+<a class="btn" href="#" id="videoLink" rel="noopener" target="_blank">Mở video</a>
+<button class="btn secondary" data-close="" style="margin-top:10px" type="button">Đóng</button>
+</div>
+</div>
+<div class="modal-bg fk-key-modal" id="fkKeyModal">
+<div class="modal">
+<div class="fk-title">🎁 Nhận Key Free thành công</div>
+<div class="fk-sub">Key có thời hạn <b>2 giờ</b> · đã tự động kích hoạt cho thiết bị này</div>
+<div class="fk-key-box" id="fkKeyValue">--</div>
+<div class="fk-actions">
+<button class="btn small" id="fkKeyCopy" type="button">📋 Sao chép Key</button>
+<button class="btn small secondary" data-close="" type="button">Đóng</button>
+</div>
+<div class="mini" id="fkCopyMsg" style="margin-top:8px;color:#86efac;min-height:16px"></div>
+</div>
+</div>
+<!-- KHUNG THÔNG BÁO TRẮNG KIỂU iOS — hiện ghi chú BAN do admin soạn -->
+<div class="ios-alert-bg" id="banAlert">
+<div aria-modal="true" class="ios-alert" role="alertdialog">
+<div class="ia-title" id="banAlertTitle">Gói đăng ký của bạn đã bị chặn vĩnh viễn.</div>
+<div class="ia-time" id="banAlertTime"></div>
+<div class="ban-key-frame" id="banKeyFrame">
+<div class="bkf-row">
+<div class="bkf-ic"><svg fill="none" stroke="#b91c1c" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M5.6 5.6l12.8 12.8"></path></svg></div>
+<div style="min-width:0">
+<div class="bkf-l">Key bị chặn</div>
+<div class="bkf-k" id="bkfKey">--</div>
+</div>
+</div>
+<div class="bkf-t"><svg fill="none" height="13" stroke="#4b5563" stroke-width="1.8" viewbox="0 0 24 24" width="13"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<span id="bkfTime">--</span></div>
+</div>
+<div class="ia-body" id="banAlertBody"></div>
+<button class="ia-ok" id="banAlertOk" type="button">OK</button>
+</div>
+</div>
+<script>
+(function(){
+  // Auto-giảm density trên máy yếu / màn nhỏ để shop không lag
+  const isMobile = window.matchMedia('(max-width:640px)').matches;
+  const N_STARS  = isMobile ? 30 : 55;
+  const N_FLOAT  = isMobile ? 8  : 16;
+  const N_SNOW   = isMobile ? 25 : 55;
+
+  const s=document.querySelector('.stars');
+  if(s){let h='';for(let i=0;i<N_STARS;i++){const x=Math.random()*100,y=Math.random()*100,d=(Math.random()*3).toFixed(2);h+=`<i style="left:${x}%;top:${y}%;animation-delay:${d}s"></i>`;}s.innerHTML=h;}
+  const f=document.querySelector('.floaters');
+  if(f){let h='';for(let i=0;i<N_FLOAT;i++){const x=Math.random()*100,dur=(18+Math.random()*20).toFixed(1),d=(Math.random()*20).toFixed(1),sz=(3+Math.random()*5).toFixed(1);h+=`<b style="left:${x}%;width:${sz}px;height:${sz}px;animation-duration:${dur}s;animation-delay:${d}s"></b>`;}f.innerHTML=h;}
+  // ==== SNOWFALL (đốm trắng bay khắp mọi trang / mọi chức năng) ====
+  let sn=document.querySelector('.snowfall');
+  if(!sn){ sn=document.createElement('div'); sn.className='snowfall'; document.body.appendChild(sn); }
+  let hh='';
+  for(let i=0;i<N_SNOW;i++){
+    const x=Math.random()*100;
+    const dur=(12+Math.random()*16).toFixed(1);
+    const delay=(Math.random()*20).toFixed(1);
+    const sz=(2+Math.random()*4).toFixed(1);
+    const op=(0.55+Math.random()*0.4).toFixed(2);
+    // Bỏ filter:blur (tốn GPU) — chỉ dùng box-shadow nhẹ để có hào quang
+    hh+=`<span style="left:${x}%;width:${sz}px;height:${sz}px;opacity:${op};animation-duration:${dur}s;animation-delay:${delay}s;background:#fff;border-radius:50%;box-shadow:0 0 5px rgba(255,255,255,.85)"></span>`;
+  }
+  sn.innerHTML=hh;
+})();
+</script>
+<script>
+async function safeFetch(url, opt){
+  const r = await fetch(url, opt);
+  const ct = r.headers.get('content-type') || '';
+  if(!ct.includes('application/json')){
+    if(r.status===401 || r.status===403){
+      throw new Error('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại');
+    }
+    // Server trả HTML/lỗi 5xx — bỏ qua im lặng, KHÔNG hiện popup đỏ nữa.
+    // Trả về object rỗng để caller tự xử (thường là poll lại sau).
+    try{ const txt = await r.text(); console.warn('[safeFetch] non-JSON', r.status, url, (txt||'').slice(0,120)); }catch(_){}
+    return {};
+  }
+  try{ return await r.json(); }catch(e){ return {}; }
+}
+async function postJson(url, body){
+  return safeFetch(url, {method:'POST', headers:{'Content-Type':'application/json'},
+                         body: JSON.stringify(body||{})});
+}
+
+/* ==== HIỆU ỨNG NHẢY SỐ (count-up) ==== */
+window.__numAnims = window.__numAnims || new WeakMap();
+function animateNum(el, to, opts){
+  if(!el) return;
+  to = Number(to)||0;
+  opts = opts || {};
+  const dur = opts.duration || 900;
+  const fromAttr = el.getAttribute('data-cur');
+  const from = fromAttr==null ? (parseInt((el.textContent||'').replace(/[^\d-]/g,''))||0) : Number(fromAttr);
+  if(from === to){ el.textContent = to.toLocaleString('vi-VN'); el.setAttribute('data-cur',to); return; }
+  const prevRaf = window.__numAnims.get(el);
+  if(prevRaf) cancelAnimationFrame(prevRaf);
+  const t0 = performance.now();
+  const diff = to - from;
+  function step(now){
+    const p = Math.min(1, (now - t0)/dur);
+    // easeOutCubic
+    const e = 1 - Math.pow(1-p, 3);
+    const v = Math.round(from + diff*e);
+    el.textContent = v.toLocaleString('vi-VN');
+    if(p<1){ window.__numAnims.set(el, requestAnimationFrame(step)); }
+    else{ el.setAttribute('data-cur', to); el.classList.add('num-pop'); setTimeout(()=>el.classList.remove('num-pop'), 380); }
+  }
+  window.__numAnims.set(el, requestAnimationFrame(step));
+}
+function setNum(id, val){ animateNum(document.getElementById(id), val); }
+</script>
+<script>
+(function(){
+  const DEV = "fp-ac3906d7ff2f5ed554f7ef180129961ded6caaecfba79d7a584c03fe";
+  const IP  = "113.167.113.67";
+  const $ = id => document.getElementById(id);
+  function _shortKey(k){
+    if(!k) return '';
+    k = String(k).toUpperCase();
+    if(k.length<=8) return k;
+    return k.slice(0,4)+'-'+k.slice(4,8)+'...';
+  }
+  // Popup wide banner theo mẫu ảnh: đỏ/xanh, chữ trắng đậm, có watermark KEY + IP
+  function showCenterPop(text, ok, opts){
+    opts = opts || {};
+    const host = document.getElementById('centerPopHost'); if(!host) return;
+    host.innerHTML = '';
+    const el = document.createElement('div');
+    el.className = 'center-pop' + (ok ? '' : ' err');
+    let wm  = opts.brand ? '<div class="cp-watermark">KEY CỦA BẠN '+opts.brand+'</div>' : '';
+    let sub = opts.sub   ? '<div class="cp-sub">'+opts.sub+'</div>' : '';
+    el.innerHTML = wm + sub + '<div class="cp-title">'+text+'</div>';
+    host.appendChild(el);
+    setTimeout(()=>{ if(el.parentNode) el.remove(); }, 2200);
+  }
+  function msg(text, ok, opts){
+    showCenterPop(text, !!ok, opts||{});
+    const m = document.getElementById('msg');
+    if(!m) return;
+    if(ok){ m.innerHTML = ''; }
+    else { m.innerHTML = '<div class="msg-err">'+text+'</div>'; }
+  }
+
+  function setTab(name){
+    document.querySelectorAll('.srh-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
+    ['t1','t2','t3','t4'].forEach(x=>{ var el=$(x); if(el) el.style.display = (x===name?'block':'none'); });
+    if(name==='t3' && typeof loadHistory==='function') loadHistory();
+  }
+  document.querySelectorAll('.srh-tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+
+  // ===== PASTE & FIX KEY =====
+  window.pasteFixKey = async function(){
+    try{
+      var txt = await navigator.clipboard.readText();
+      var el=$('fixKeyInput'); if(el){ el.value=(txt||'').trim(); }
+    }catch(e){
+      var el=$('fixKeyInput'); if(el) el.focus();
+    }
+  };
+  window.doFixKey = async function(){
+    var inp=$('fixKeyInput'); if(!inp) return;
+    var key=inp.value.trim().toUpperCase();
+    var msg=$('fixKeyMsg'); if(!msg) return;
+    if(!key){ msg.innerHTML='<div class="msg-err">Vui lòng nhập key bị lỗi</div>'; return; }
+    msg.innerHTML='<div style="color:#93c5fd;font-size:13px">⚡ Đang xử lý...</div>';
+    try{
+      var j = await postJson('/api/fix_key', {key:key});
+      if(j.ok){
+        msg.innerHTML='<div class="msg-ok" style="word-break:break-all">✅ Key mới: <b>'+j.new_key+'</b></div>'
+          +'<button class="srh-copy-btn" style="margin-top:8px;width:100%" onclick="window.copyText(\''+j.new_key+'\',this,\'Sao chép key mới\')">Sao chép key mới</button>';
+      } else {
+        msg.innerHTML='<div class="msg-err">'+(j.error||'Không thể fix key')+' </div>';
+      }
+    }catch(e){ msg.innerHTML='<div class="msg-err">'+e.message+'</div>'; }
+  };
+
+  // ===== PASTE & RESET MÁY =====
+  window.pasteResetKey = async function(){
+    try{
+      var txt = await navigator.clipboard.readText();
+      var el=$('resetKeyInput'); if(el){ el.value=(txt||'').trim(); }
+    }catch(e){
+      var el=$('resetKeyInput'); if(el) el.focus();
+    }
+  };
+  window.doResetMachine = async function(){
+    var inp=$('resetKeyInput'); if(!inp) return;
+    var key=inp.value.trim().toUpperCase();
+    var msg=$('resetKeyMsg'); if(!msg) return;
+    if(!key){ msg.innerHTML='<div class="msg-err">Vui lòng nhập key cần reset</div>'; return; }
+    msg.innerHTML='<div style="color:#fb923c;font-size:13px">⚡ Đang reset...</div>';
+    try{
+      var j = await postJson('/api/reset_key', {key:key});
+      if(j.ok){
+        msg.innerHTML='<div class="msg-ok">✅ '+(j.msg||'Reset thành công! Hãy kích hoạt lại trên máy mới.')+' </div>';
+        inp.value='';
+      } else {
+        msg.innerHTML='<div class="msg-err">'+(j.msg||j.error||'Không thể reset')+' </div>';
+      }
+    }catch(e){ msg.innerHTML='<div class="msg-err">'+e.message+'</div>'; }
+  };
+
+  // ========= DANH SÁCH CHỨC NĂNG PROXY TRONG TAB CÀI ĐẶT =========
+  window.__cpSafe = function(txt) {
+    try { if(navigator.clipboard&&window.isSecureContext) { navigator.clipboard.writeText(String(txt)); return true; } } catch(e){}
+    try { var ta=document.createElement('textarea'); ta.value=String(txt); ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.focus(); ta.select(); document.execCommand('copy'); ta.remove(); return true; } catch(e){ return false; }
+  };
+  window.__cpSafe = function(txt, btn, lbl) {
+    var success = function() { btn.textContent = '\u2705 Copied'; setTimeout(function(){ btn.textContent = lbl; }, 1300); };
+    var fail = function() { btn.textContent = '\u274c L\u1ed7i'; setTimeout(function(){ btn.textContent = lbl; }, 1300); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(String(txt)).then(success).catch(fallback);
+    } else {
+      fallback();
+    }
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = String(txt);
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, 99999);
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) success(); else fail();
+      } catch(e) { fail(); }
+    }
+  };
+
+  window.copyText = function(txt, btn, lbl){
+    var success = function(){
+      btn.textContent = '✅ OK';
+      setTimeout(function(){ btn.textContent = lbl || 'Sao chép'; }, 1100);
+    };
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(String(txt)).then(success).catch(fallback);
+    } else {
+      fallback();
+    }
+    function fallback(){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = String(txt);
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        success();
+      }catch(e){
+        btn.textContent = '❌ Lỗi';
+        setTimeout(function(){ btn.textContent = lbl || 'Sao chép'; }, 1100);
+      }
+    }
+  };
+
+  function renderProxyFunctions(show){
+    var status=document.getElementById('srhConnectionStatus');
+    var ipValue=document.getElementById('srhSettingsIp');
+    var ipCopy=document.getElementById('srhCopyIp');
+    var list=document.getElementById('srhProxyList');
+    if(!status||!ipValue||!ipCopy||!list) return;
+    renderProxyFunctions.requestId=(renderProxyFunctions.requestId||0)+1;
+    var requestId=renderProxyFunctions.requestId;
+    list.textContent='';
+
+    if(!show){
+      ipValue.textContent='Chưa kết nối';
+      ipCopy.disabled=true;
+      ipCopy.onclick=null;
+      status.textContent='Kích hoạt key hợp lệ để xem thông tin máy chủ.';
+      var hiddenNote=document.createElement('div');
+      hiddenNote.className='srh-port-empty';
+      hiddenNote.textContent='Danh sách sẽ hiển thị sau khi IP được kích hoạt.';
+      list.appendChild(hiddenNote);
+      return;
+    }
+
+    status.textContent='Đang tải thông tin máy chủ...';
+    list.textContent='Đang tải danh sách cổng...';
+    fetch('/api/proxy/info',{cache:'no-store'})
+      .then(function(response){
+        if(!response.ok) throw new Error('Máy chủ trả về mã lỗi '+response.status+'.');
+        return response.json();
+      })
+      .then(function(data){
+        if(requestId!==renderProxyFunctions.requestId) return;
+        if(!data||data.ok!==true) throw new Error('Phản hồi máy chủ không hợp lệ.');
+        if(!data.approved){
+          ipValue.textContent='Chưa kích hoạt';
+          ipCopy.disabled=true;
+          status.textContent=data.note||'Cần kích hoạt IP bằng key hợp lệ.';
+          list.textContent='';
+          var note=document.createElement('div');
+          note.className='srh-port-empty';
+          note.textContent='Kích hoạt key hợp lệ để xem danh sách chức năng và cổng.';
+          list.appendChild(note);
+          return;
+        }
+
+        var host=String(data.server_ip||'').trim();
+        var proxies=Array.isArray(data.proxies)?data.proxies:[];
+        if(!host||!proxies.length) throw new Error('Máy chủ chưa cấu hình địa chỉ hoặc danh sách cổng.');
+        ipValue.textContent=host;
+        ipCopy.disabled=false;
+        ipCopy.onclick=function(){window.copyText(host,ipCopy,'COPY');};
+        status.textContent=data.note||'IP đang hoạt động. Chọn chức năng và sao chép cổng cần dùng.';
+        list.textContent='';
+
+        proxies.forEach(function(proxy){
+          var proxyHost=String(proxy.host||host).trim();
+          var port=String(proxy.port||'').trim();
+          if(!proxyHost||!port) return;
+          var endpoint=String(proxy.proxy||proxyHost+':'+port);
+          var row=document.createElement('div');
+          row.className='srh-port-row';
+          var details=document.createElement('div');
+          details.className='srh-port-details';
+          var name=document.createElement('div');
+          name.className='srh-port-name';
+          name.textContent=String(proxy.name||proxy.slot||'Proxy');
+          var address=document.createElement('div');
+          address.className='srh-port-address';
+          address.textContent=endpoint;
+          var portValue=document.createElement('div');
+          portValue.className='srh-port-num';
+          portValue.textContent='PORT '+port;
+          details.appendChild(name);
+          details.appendChild(address);
+          details.appendChild(portValue);
+          var copy=document.createElement('button');
+          copy.type='button';
+          copy.className='srh-copy-btn';
+          copy.textContent='COPY IP:PORT';
+          copy.onclick=function(){window.copyText(endpoint,copy,'COPY IP:PORT');};
+          var copyPort=document.createElement('button');
+          copyPort.type='button';
+          copyPort.className='srh-copy-btn srh-copy-port';
+          copyPort.textContent='PORT';
+          copyPort.onclick=function(){window.copyText(port,copyPort,'PORT');};
+          var actions=document.createElement('div');
+          actions.className='srh-port-actions';
+          actions.appendChild(copy);
+          actions.appendChild(copyPort);
+          row.appendChild(details);
+          row.appendChild(actions);
+          list.appendChild(row);
+        });
+        if(!list.children.length){
+          var empty=document.createElement('div');
+          empty.className='srh-port-empty';
+          empty.textContent='Chưa có cổng nào được cấu hình.';
+          list.appendChild(empty);
+        }
+      })
+      .catch(function(error){
+        if(requestId!==renderProxyFunctions.requestId) return;
+        ipValue.textContent='Không khả dụng';
+        ipCopy.disabled=true;
+        status.textContent='Không thể tải thông tin kết nối: '+error.message;
+        list.textContent='';
+        var errorNote=document.createElement('div');
+        errorNote.className='srh-port-empty';
+        errorNote.textContent='Hãy thử tải lại trang. Nếu lỗi tiếp tục, vui lòng liên hệ quản trị viên.';
+        list.appendChild(errorNote);
+      });
+  }
+
+  function renderStatus(j){
+    const box=$("statusBox");
+    if(!j || !j.has_key){ box.innerHTML=''; renderProxyFunctions(false); lockConfig(); return; }
+    // has_key: có key gắn với thiết bị/IP này
+    if(j.state==='expired'){
+      box.innerHTML =
+       '<div class="status-exp">'
+      +'  <h4>❌ KEY ĐÃ HẾT HẠN</h4>'
+      +'  <div class="row2"><span>IP của bạn</span><span class="v">'+(j.current_ip||'-')+' · chưa ACTIVE</span></div>'
+      +'  <div class="row2"><span>Trạng thái</span><span class="v">Hết hạn</span></div>'
+      +'  <div class="row2"><span>Ngày kích hoạt</span><span class="v">'+(j.activated_at||'-')+'</span></div>'
+      +'  <div class="row2"><span>Ngày hết hạn</span><span class="v">'+(j.expires||'-')+'</span></div>'
+      +'</div>';
+      lockConfig();
+      renderProxyFunctions(false);
+    } else if(j.state==='active'){
+      box.innerHTML =
+       '<div class="status-ok">'
+      +'  <h4>✅ IP ĐANG HOẠT ĐỘNG</h4>'
+      +'  <div class="row2"><span>IP đang ACTIVE</span><span class="v">'+(j.current_ip||j.bound_ip||'-')+'</span></div>'
+      +'  <div class="row2"><span>Trạng thái</span><span class="v">Hoạt động</span></div>'
+      +'  <div class="row2"><span>Ngày kích hoạt</span><span class="v">'+(j.activated_at||'-')+'</span></div>'
+      +'  <div class="row2"><span>Ngày hết hạn</span><span class="v">'+(j.expires||'-')+'</span></div>'
+      +'</div>';
+      unlockConfig();
+      renderProxyFunctions(true);
+    } else { // inactive — key hợp lệ nhưng IP hiện tại chưa được active
+      box.innerHTML =
+       '<div class="status-off">'
+      +'  <h4>⚠️ IP ĐÃ ĐỔI — CẦN ACTIVE IP MỚI</h4>'
+      +'  <div class="row2"><span>IP cũ (đã ngừng)</span><span class="v">'+(j.bound_ip||'-')+'</span></div>'
+      +'  <div class="row2"><span>IP hiện tại</span><span class="v">'+(j.current_ip||'-')+'</span></div>'
+      +'  <div class="row2"><span>Trạng thái</span><span class="v">Chưa ACTIVE IP</span></div>'
+      +'  <div class="note-ip"> <b>Kick Hoạt Key</b> để duyệt IP mới. IP cũ sẽ không còn dùng được.</div>'
+      +'  <div class="row2"><span>Ngày kích hoạt</span><span class="v">'+(j.activated_at||'-')+'</span></div>'
+      +'  <div class="row2"><span>Ngày hết hạn</span><span class="v">'+(j.expires||'-')+'</span></div>'
+      +'</div>';
+      lockConfig();
+      renderProxyFunctions(false);
+      // ==== ĐỔI IP → TỰ ĐỘNG KÍCH HOẠT LẠI NGAY ====
+      _autoReactivate(j);
+    }
+  }
+
+  // ---------- KHUNG THÔNG BÁO TRẮNG (KEY BỊ BAN) ----------
+  function showBanAlert(j){
+    const bg=$("banAlert"); if(!bg) return;
+    const t=$("banAlertTitle"), tm=$("banAlertTime"), bd=$("banAlertBody");
+    if(t)  t.textContent  = j.title || 'Gói đăng ký của bạn đã bị chặn vĩnh viễn.';
+    if(tm) tm.textContent = j.banned_at ? ('Bị chặn lúc: '+j.banned_at) : '';
+    if(bd) bd.innerHTML   = j.reason_html
+        || ('<p>'+String(j.reason||'Key của bạn đã bị chặn.').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')+'</p>');
+    bg.classList.add('show');
+  }
+  (function(){
+    const bg=$("banAlert"); if(!bg) return;
+    const close=()=>bg.classList.remove('show');
+    const ok=$("banAlertOk"); if(ok) ok.addEventListener('click',close);
+    bg.addEventListener('click',e=>{ if(e.target===bg) close(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+  })();
+
+  // ---------- TỰ KÍCH HOẠT LẠI KHI IP THAY ĐỔI ----------
+  let _autoBusy=false, _lastAutoIp='', _autoTries=0;
+  function _autoReactivate(j){
+    if(_autoBusy) return;
+    const savedK = localStorage.getItem(SAVED_KEY_LS) || ($("keyInput") ? $("keyInput").value.trim() : '');
+    if(!savedK) return;
+    if(!j || !j.can_auto_activate) return;
+    const curIp = j.current_ip || IP;
+    if(_lastAutoIp === curIp && _autoTries >= 2) return;   // tránh lặp vô hạn
+    if(_lastAutoIp !== curIp){ _lastAutoIp = curIp; _autoTries = 0; }
+    _autoTries++;
+    _autoBusy = true;
+    const note = $("ipAutoNote");
+    if(note){
+      note.style.display='block';
+      note.textContent = (j.ip_changed
+        ? '🔄 Phát hiện bạn đã đổi WiFi/mạng: IP cũ '+(j.bound_ip||'-')+' → IP mới '+curIp+' · IP cũ đã ngừng hoạt động, đang tự động ACTIVE IP mới...'
+        : '🔄 IP này chưa được ACTIVE · Đang tự động ACTIVE IP...');
+    }
+    if(savedK && $("keyInput") && !$("keyInput").value.trim()) $("keyInput").value = savedK;
+    activate(true).then(result=>{
+      _autoBusy=false;
+      if(result && result.ok){
+        if(note){
+          note.textContent='✅ Đã duyệt IP mới thành công: '+curIp+'.';
+          setTimeout(()=>{ note.style.display='none'; }, 5000);
+        }
+      } else if(note){
+        note.textContent='❌ Chưa duyệt được IP mới: '+((result && result.error) || 'Máy chủ từ chối yêu cầu. Hãy kiểm tra key hoặc thử lại.');
+      }
+    }).catch(error=>{
+      _autoBusy=false;
+      if(note) note.textContent='❌ Lỗi khi duyệt IP mới: '+(error && error.message ? error.message : 'Vui lòng thử lại.');
+    });
+  }
+
+  async function refreshStatus(){
+    try{
+      const j = await safeFetch('/api/status?device_id='+encodeURIComponent(DEV));
+      renderStatus(j);
+    }catch(e){
+    }
+  }
+  // Kiểm tra ngay khi mở trang/mạng hoạt động; bộ hẹn giờ được tạo sau khi khởi tạo.
+  window.addEventListener('online', refreshStatus);
+  window.addEventListener('focus', refreshStatus);
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden) refreshStatus(); });
+
+  // ---- LƯU KEY LÊN THIẾT BỊ (localStorage) ----
+  const SAVED_KEY_LS = 'shopdhp_saved_key_' + DEV.slice(-10);
+  const savedKey = localStorage.getItem(SAVED_KEY_LS) || '';
+  if(savedKey) $("keyInput").value = savedKey;
+
+  // Gắn wrapper để hiệu ứng spinner không phá layout
+  (function(){ const b=$("btnActivate"); if(b && !b.querySelector('.btn-label')) b.innerHTML='<span class="btn-label">'+b.innerHTML+'</span>'; })();
+  function _setBtnLoading(btn,on){ if(!btn) return; btn.classList.toggle('loading',!!on); btn.disabled=!!on; }
+  async function activate(silent){
+    const key=$("keyInput").value.trim();
+    if(!key){ if(!silent) msg('Vui lòng nhập key',false); return {ok:false,error:'Không tìm thấy key đã lưu.'}; }
+    const btn=$("btnActivate");
+    if(!silent){ _setBtnLoading(btn,true); msg('⚡ Đang ACTIVE IP, vui lòng đợi...',true); $("statusBox").innerHTML=''; }
+
+    const startedAt=Date.now();
+    try{
+      const j = await postJson('/api/activate',{key,device_id:DEV});
+      // Delay tối thiểu 1.2s để hiệu ứng loading rõ ràng
+      const wait=Math.max(0, 1200-(Date.now()-startedAt));
+      if(!silent && wait) await new Promise(r=>setTimeout(r,wait));
+      if(j.ok){
+        localStorage.setItem(SAVED_KEY_LS, key);
+        if(!silent) msg('Đã duyệt IP thành công', true, {brand:_shortKey(key)});
+        if(j.status_obj) renderStatus(j.status_obj);
+        else refreshStatus();
+        return j;
+      } else if(j.banned){
+        // KEY BỊ BAN → hiện khung trắng kiểu iOS với ghi chú admin soạn
+        showBanAlert(j);
+        $("statusBox").innerHTML = '';
+        lockConfig();
+        return j;
+      } else {
+        const errMsg = j.error || 'Không xác định';
+        const isDevErr  = /thiết bị khác/i.test(errMsg);
+        const isExpired = /hết hạn/i.test(errMsg);
+        if(/hết hạn|thiết bị khác|không tồn tại|Gửi lỗi/i.test(errMsg)){
+          localStorage.removeItem(SAVED_KEY_LS);
+          $("statusBox").innerHTML = '';
+          lockConfig();
+        }
+        if(!silent){
+          let opts = {};
+          if(isDevErr)  opts.sub   = 'IP của bạn: '+IP;
+          if(isExpired) opts.brand = _shortKey(key);
+          msg(errMsg, false, opts);
+        }
+        refreshStatus();
+        return j;
+      }
+    }catch(e){
+      if(!silent) msg('Lỗi mạng: '+e.message,false);
+      return {ok:false,error:'Lỗi mạng: '+e.message};
+    }finally{
+      if(!silent) _setBtnLoading($("btnActivate"),false);
+    }
+  }
+  $("btnActivate").addEventListener('click',()=>activate(false));
+
+  // ---- XOÁ KEY ĐÃ LƯU ----
+  const btnDel = $("btnDeleteKey");
+  if(btnDel){
+    btnDel.addEventListener('mouseenter',()=>{ btnDel.style.background='rgba(239,68,68,.20)'; btnDel.style.color='#fecaca'; btnDel.style.transform='translateY(-1px)'; });
+    btnDel.addEventListener('mouseleave',()=>{ btnDel.style.background='rgba(239,68,68,.10)'; btnDel.style.color='#fca5a5'; btnDel.style.transform=''; });
+
+    btnDel.addEventListener('click', async ()=>{
+      const had = !!localStorage.getItem(SAVED_KEY_LS);
+      localStorage.removeItem(SAVED_KEY_LS);
+      $("keyInput").value = '';
+      $("statusBox").innerHTML = '';
+      lockConfig();
+      renderProxyFunctions(false);
+
+      // Gọi server thu hồi IP và hủy quyền truy cập proxy ngay lập tức
+      try{
+        await postJson('/api/deactivate', {device_id: DEV});
+      }catch(e){}
+
+      if(had){
+        msg('Đã xóa key và thu hồi quyền IP.', true, {sub:'IP của bạn: '+IP});
+      } else {
+        msg('Chưa có key nào được lưu trên thiết bị.', false, {sub:'IP của bạn: '+IP});
+      }
+      $("keyInput").focus();
+    });
+  }
+
+
+  async function lookup(){
+    const key=$("checkInput").value.trim(); if(!key) return;
+    const box=$("checkRes"); box.innerHTML='<span class="chip">Đang tra...</span>';
+    try{
+      const j = await safeFetch('/api/lookup?key='+encodeURIComponent(key));
+      if(!j.ok){ box.innerHTML='<div class="msg-err">'+j.error+'</div>'; return; }
+      box.innerHTML='<div class="card" style="padding:12px">'
+        +'<div><b>Loại:</b> '+j.type_name+'</div>'
+        +'<div><b>Trạng thái:</b> '+j.status+'</div>'
+        +'<div><b>Thiết bị:</b> <code>'+(j.device||'-')+'</code></div>'
+        +'<div><b>Hết hạn:</b> '+j.expires+'</div></div>';
+    }catch(e){ box.innerHTML='<div class="msg-err">'+e.message+'</div>'; }
+  }
+  if($("btnLookup")) $("btnLookup").addEventListener('click',lookup);
+
+  let _hisCache = {normal:[], freekeys:[]};
+  function _renderHis(filter){
+    const box=$("hisBox"), fkBox=$("fkHisBox");
+    if(!box) return;
+    const q = (filter||'').trim().toLowerCase();
+    const match = x => !q || (x.key||'').toLowerCase().includes(q) || (x.type_name||'').toLowerCase().includes(q) || (x.activated_at||'').toLowerCase().includes(q) || (x.expires||'').toLowerCase().includes(q);
+    const nn = _hisCache.normal.filter(match);
+    const ff = _hisCache.freekeys.filter(match);
+    box.innerHTML   = nn.length ? nn.map(x=>'<div class="list-item" style="cursor:default;margin-bottom:6px"><div class="ic">🔑</div><div style="min-width:0"><div style="font-weight:700;word-break:break-all"><code>'+x.key+'</code></div><div class="mini">'+x.type_name+' · '+x.activated_at+' → '+x.expires+'</div></div></div>').join('') : '<span class="mini">Không có kết quả phù hợp.</span>';
+    fkBox.innerHTML = ff.length ? ff.map(x=>'<div class="row2"><span>🎁 <code>'+x.key+'</code></span><span>'+x.activated_at+' → '+x.expires+'</span></div>').join('') : '<span class="mini">Không có key free phù hợp.</span>';
+  }
+  async function loadHistory(){
+    const box=$("hisBox"); box.innerHTML='<span class="mini">Đang tải...</span>';
+    try{
+      const j = await safeFetch('/api/history?device_id='+encodeURIComponent(DEV));
+      const all = j.items||[];
+      _hisCache.freekeys = all.filter(x=>x.freekey);
+      _hisCache.normal   = all.filter(x=>!x.freekey);
+      _renderHis($("hisSearch") ? $("hisSearch").value : '');
+    }catch(e){ box.innerHTML='<div class="msg-err">'+e.message+'</div>'; }
+  }
+  if($("btnRefreshHis")) $("btnRefreshHis").addEventListener('click',loadHistory);
+  if($("hisSearch")){
+    let _t=null;
+    $("hisSearch").addEventListener('input',e=>{ clearTimeout(_t); _t=setTimeout(()=>_renderHis(e.target.value),120); });
+  }
+
+  function unlockConfig(){
+    var el=$("btnConfig");
+    if(el){ el.classList.remove('locked'); el.classList.add('unlocked'); }
+    var hint = $("cfgHint");
+    if(hint) hint.textContent = '✅ Đã duyệt IP · Bấm để tải cấu hình VPN';
+    var badge = $("cfgBadge");
+    if(badge){ badge.innerHTML = '⚡ Tải Cấu Hình'; badge.className = 'ios-cfg-badge ready'; }
+  }
+  function lockConfig(){
+    var el=$("btnConfig");
+    if(el){ el.classList.add('locked'); el.classList.remove('unlocked'); }
+    var hint = $("cfgHint");
+    if(hint) hint.textContent = 'Cần Kick Hoạt Key để mở khoá';
+    var badge = $("cfgBadge");
+    if(badge){ badge.innerHTML = '🔒 Đang Khóa'; badge.className = 'ios-cfg-badge'; }
+  }
+  (function(){
+    var _bc = $("btnConfig");
+    if(_bc) _bc.addEventListener('click', function(){
+      if(this.classList.contains('locked')){
+        msg('Bấm nút Kick Hoạt Key để duyệt IP cho máy bạn trước!',false);
+        return;
+      }
+      var target = this.dataset.url || '/config/download';
+      window.location.href = target;
+    });
+  })();
+
+  // Video modal — link do admin đặt
+  const vm=$("videoModal");
+  const _btnVideo=$("btnVideo");
+  if(_btnVideo) _btnVideo.addEventListener('click',async ()=>{
+    try{
+      const j = await safeFetch('/api/links');
+      if(vm && $("videoLink")) $("videoLink").href = j.video_url || '#';
+    }catch(e){}
+    if(vm) vm.classList.add('show');
+    else{ // Fallback: open in new tab
+      try{ const j2 = await safeFetch('/api/links'); window.open(j2.video_url||'#','_blank'); }catch(e){}
+    }
+  });
+  if(vm) vm.addEventListener('click',(e)=>{ if(e.target===vm || e.target.hasAttribute('data-close')) vm.classList.remove('show'); });
+
+  // ==== Free Key modal (hiện key + nút sao chép) ====
+  const fkm=$("fkKeyModal");
+  if(fkm){
+    fkm.addEventListener('click',(e)=>{ if(e.target===fkm || e.target.hasAttribute('data-close')) fkm.classList.remove('show'); });
+    const cpBtn=$("fkKeyCopy");
+    if(cpBtn) cpBtn.addEventListener('click', async ()=>{
+      const val=($("fkKeyValue")||{}).textContent||'';
+      const cm=$("fkCopyMsg");
+      try{
+        if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(val); }
+        else{ const ta=document.createElement('textarea'); ta.value=val; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+        if(cm){ cm.style.color='#86efac'; cm.textContent='✅ Đã sao chép key vào clipboard'; }
+      }catch(e){ if(cm){ cm.style.color='#fca5a5'; cm.textContent='❌ Không sao chép được, hãy chọn thủ công.'; } }
+    });
+  }
+
+  // ---- FREE KEY EVENT ----
+  const fkBtn=$("btnFreekey"), fkCd=$("fkCountdown"), fkMsg=$("fkMsg");
+  let fkState = {can_claim:false, next_at:0, cooldown_until:0};
+
+  function fmtHMS(sec){
+    if(sec<0) sec=0;
+    const H=String(Math.floor(sec/3600)).padStart(2,'0');
+    const M=String(Math.floor(sec%3600/60)).padStart(2,'0');
+    const S=String(sec%60).padStart(2,'0');
+    return `${H}:${M}:${S}`;
+  }
+  function tickFk(){
+    const now=Math.floor(Date.now()/1000);
+    if(fkState.cooldown_until && now < fkState.cooldown_until){
+      fkBtn.disabled=true; fkBtn.textContent='Chờ '+fmtHMS(fkState.cooldown_until-now);
+      fkCd.textContent='Bạn đã nhận · 1 UID chờ đủ 36 giờ';
+      return;
+    }
+    if(fkState.can_claim){
+      fkBtn.disabled=false;
+      const lab=fkBtn.querySelector('.btn-label'); if(lab) lab.textContent='🎁 Nhận Key Free'; else fkBtn.textContent='🎁 Nhận Key Free';
+      fkCd.textContent='🎉 Đang mở · Nhấn để nhận key free ngay';
+      return;
+    }
+    fkBtn.disabled=true;
+    const lab=fkBtn.querySelector('.btn-label'); if(lab) lab.textContent='Đang chờ'; else fkBtn.textContent='Đang chờ';
+    if(fkState.cooldown_until){
+      fkCd.textContent='Chờ nhận lại sau: '+fmtHMS(fkState.cooldown_until-now);
+    } else { fkCd.textContent='--:--:--'; }
+  }
+  async function loadFkStatus(){
+    try{
+      const j = await safeFetch('/api/freekey/status?device_id='+encodeURIComponent(DEV));
+      fkState = j;
+    }catch(e){}
+    tickFk();
+  }
+  if(fkBtn && !fkBtn.querySelector('.btn-label')) fkBtn.innerHTML='<span class="btn-label">'+fkBtn.textContent+'</span>';
+  fkBtn.addEventListener('click', async ()=>{
+    fkBtn.classList.add('loading'); fkBtn.disabled=true;
+    const startedAt=Date.now();
+    try{
+      const j = await postJson('/api/freekey/claim',{device_id:DEV});
+      const wait=Math.max(0, 1500-(Date.now()-startedAt));
+      if(wait) await new Promise(r=>setTimeout(r,wait));
+      if(j.ok){
+        fkMsg.innerHTML='<div class="msg-ok">Đã nhận Key Free · Đã tự động kích hoạt 2 giờ.</div>';
+        localStorage.setItem(SAVED_KEY_LS, j.key);
+        $("keyInput").value = j.key;
+        // Hiện popup key + nút sao chép
+        const km=$("fkKeyModal"), kv=$("fkKeyValue"), cm=$("fkCopyMsg");
+        if(km && kv){
+          kv.textContent = j.key;
+          if(cm) cm.textContent='';
+          km.classList.add('show');
+        }
+        refreshStatus();
+        loadHistory();
+      } else {
+        fkMsg.innerHTML='<div class="msg-err">'+(j.error||'Không thể nhận')+'</div>';
+      }
+    }catch(e){ fkMsg.innerHTML='<div class="msg-err">'+e.message+'</div>'; }
+    fkBtn.classList.remove('loading');
+    loadFkStatus();
+  });
+  loadFkStatus();
+  setInterval(tickFk, 1000);
+  setInterval(loadFkStatus, 30000);
+
+  // ==== Live activation TOAST (nổi trên đầu màn hình, tự mất sau ~2s) ====
+  function showLiveToast(x){
+    const host = document.getElementById('liveToastHost');
+    if(!host || !x) return;
+    const meta = x.duration_label ? ('Thời hạn: '+x.duration_label) : (x.type_name||'');
+    const el = document.createElement('div');
+    el.className = 'live-toast';
+    el.innerHTML =
+        '<div class="tick" aria-hidden="true">'
+      +   '<svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg>'
+      + '</div>'
+      + '<div class="body">'
+      +   '<div class="t1">🔑 Có người vừa kích hoạt key!</div>'
+      +   '<div class="t2">'+x.key_mask+'</div>'
+      +   (meta ? '<div class="t3">'+meta+'</div>' : '')
+      + '</div>';
+    host.appendChild(el);
+    // Animation kết thúc sau ~2s (in .35s + delay 1.7s + out .35s) → xoá node
+    setTimeout(()=>{ el.remove(); }, 2200);
+  }
+
+  let _liveLastKey = '';
+  let _liveFirstLoad = true;
+  async function loadLive(){
+    try{
+      const j = await safeFetch('/api/live-activations');
+      const items = j.items || [];
+      if(!items.length) return;
+      const top = items[0];
+      const topKey = (top.at_ts||0)+'_'+top.key_mask;
+      if(topKey !== _liveLastKey){
+        // Lần load đầu tiên KHÔNG bắn toast cũ để tránh spam khi mới mở trang
+        if(!_liveFirstLoad) showLiveToast(top);
+        _liveLastKey = topKey;
+      }
+      _liveFirstLoad = false;
+    }catch(e){}
+  }
+  loadLive();
+  setInterval(loadLive, 6000);
+
+
+
+  refreshStatus();
+  setInterval(refreshStatus, 30000);
+})();
+</script>
+<!-- Constellation-style ambient canvas background -->
+<script id="constellationScript">
+(function(){
+  var canvas = document.getElementById('constellationCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  if(!ctx) return;
+  var width, height;
+  var nodes = [];
+  var LINK = 160;
+  var pointer = { x: -1000, y: -1000 };
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var animationFrame = 0;
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.max(1, Math.floor(width * dpr));
+    canvas.height = Math.max(1, Math.floor(height * dpr));
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+  }
+
+  function initNodes() {
+    nodes = [];
+    var count = window.innerWidth < 768 ? 45 : 95;
+    for(var i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        radius: Math.random() * 2.4 + 1.8
+      });
+    }
+  }
+
+  window.addEventListener('resize', function(){
+    resize();
+    initNodes();
+  });
+  resize();
+  initNodes();
+
+  function updatePointer(x, y) {
+    pointer.x = x;
+    pointer.y = y;
+  }
+
+  window.addEventListener('mousemove', function(e){
+    updatePointer(e.clientX, e.clientY);
+  });
+
+  window.addEventListener('mouseleave', function(){
+    pointer.x = -1000;
+    pointer.y = -1000;
+  });
+
+  window.addEventListener('touchstart', function(e){
+    if(e.touches && e.touches[0]){
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, {passive:true});
+
+  window.addEventListener('touchmove', function(e){
+    if(e.touches && e.touches[0]){
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, {passive:true});
+
+  window.addEventListener('touchend', function(){
+    pointer.x = -1000;
+    pointer.y = -1000;
+  });
+
+  function dist(a, b) {
+    var dx = a.x - b.x;
+    var dy = a.y - b.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  function animateCanvas() {
+    animationFrame = 0;
+    ctx.clearRect(0, 0, width, height);
+    ctx.lineCap = 'butt';
+    ctx.lineJoin = 'miter';
+
+    ctx.strokeStyle = '#14243a';
+    ctx.lineWidth = 1;
+    var len = nodes.length;
+    for (var i = 0; i < len; i++) {
+      var ni = nodes[i];
+      for (var j = i + 1; j < len; j++) {
+        var nj = nodes[j];
+        var d = dist(ni, nj);
+        if (d < LINK) {
+          ctx.globalAlpha = 0.12 + (1 - d / LINK) * 0.22;
+          ctx.beginPath();
+          ctx.moveTo(ni.x, ni.y);
+          ctx.lineTo(nj.x, nj.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    var now = Date.now();
+    for (var k = 0; k < len; k++) {
+      var node = nodes[k];
+      node.x += node.vx;
+      node.y += node.vy;
+
+      if(node.x < 0 || node.x > width) node.vx *= -1;
+      if(node.y < 0 || node.y > height) node.vy *= -1;
+
+      var pd = dist(node, pointer);
+      if(pd < 220) {
+        node.x -= (node.x - pointer.x) * 0.006;
+        node.y -= (node.y - pointer.y) * 0.006;
+      }
+
+      var pulse = 0.78 + Math.sin(now * 0.001 + node.x) * 0.22;
+      ctx.fillStyle = '#263d5a';
+      ctx.globalAlpha = pulse * 0.18;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius * 2.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#7186a3';
+      ctx.globalAlpha = pulse * 0.58;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    if(!prefersReducedMotion && !document.hidden) {
+      animationFrame = requestAnimationFrame(animateCanvas);
+    }
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden && animationFrame) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    } else if(!document.hidden && !prefersReducedMotion && !animationFrame) {
+      animationFrame = requestAnimationFrame(animateCanvas);
+    }
+  });
+  if(prefersReducedMotion) animateCanvas();
+  else animationFrame = requestAnimationFrame(animateCanvas);
+})();
+</script>
+<script>
+/* UPDATE v4 — đổ dữ liệu vào KHUNG TRONG SUỐT khi key bị BAN */
+(function(){
+  const bg=document.getElementById('banAlert');
+  const fr=document.getElementById('banKeyFrame');
+  if(!bg||!fr) return;
+  function pickKey(){
+    const i=document.getElementById('keyInput');
+    let k=(i&&i.value)||'';
+    if(!k){ try{ k=localStorage.getItem('shopdhp_saved_key_'+(window.__DHP_DEV||''))||''; }catch(e){} }
+    return (k||'').trim().toUpperCase();
+  }
+  function fill(){
+    if(!bg.classList.contains('show')){ fr.classList.remove('show'); return; }
+    const k=pickKey();
+    document.getElementById('bkfKey').textContent = k || 'Không xác định';
+    const t=document.getElementById('banAlertTime');
+    document.getElementById('bkfTime').textContent =
+      (t && t.textContent.trim()) ? t.textContent.trim() : 'Bị chặn lúc: không xác định';
+    fr.classList.add('show');
+  }
+  new MutationObserver(fill).observe(bg,{attributes:true,attributeFilter:['class']});
+  fill();
+})();
+</script>
+<style>
+/* ====== UPDATE v6 · POPUP THÔNG BÁO ====== */
+#dhpNoticeBg{position:fixed;inset:0;z-index:99998;display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+#dhpNoticeBg.show{display:flex;animation:dhpFade .18s ease-out}
+@keyframes dhpFade{from{opacity:0}to{opacity:1}}
+#dhpNoticeBg .nt-card{position:relative;width:100%;max-width:520px;border-radius:22px;padding:26px 24px 20px;
+  background:linear-gradient(160deg,#0b1226 0%,#080d1c 55%,#05070f 100%);
+  border:1px solid rgba(56,189,248,.28);
+  box-shadow:0 30px 90px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.03) inset;
+  animation:dhpPop .24s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes dhpPop{from{transform:scale(.9) translateY(8px);opacity:0}to{transform:none;opacity:1}}
+#dhpNoticeBg .nt-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:0;
+  background:rgba(255,255,255,.08);color:#cbd5e1;font-size:16px;cursor:pointer;display:grid;place-items:center;transition:.15s}
+#dhpNoticeBg .nt-x:hover{background:rgba(255,255,255,.16);color:#fff;transform:rotate(90deg)}
+#dhpNoticeBg .nt-tag{display:flex;align-items:center;gap:8px;color:#38bdf8;font-weight:800;font-size:14px;
+  letter-spacing:2px;text-transform:uppercase}
+#dhpNoticeBg .nt-tag .ic{font-size:17px;animation:dhpRing 2.4s ease-in-out infinite;display:inline-block}
+@keyframes dhpRing{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-14deg)}85%{transform:rotate(12deg)}}
+#dhpNoticeBg .nt-title{margin:16px 0 12px;font-size:24px;font-weight:900;color:#fff;line-height:1.25;
+  letter-spacing:.4px;word-break:break-word}
+#dhpNoticeBg .nt-body{font-size:15px;font-weight:700;color:#dbe3f4;line-height:1.6;white-space:pre-wrap;
+  word-break:break-word;max-height:44vh;overflow:auto}
+#dhpNoticeBg .nt-time{margin-top:18px;font-size:12.5px;color:#8b93ad}
+#dhpNoticeBg .nt-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+#dhpNoticeBg .nt-b{border:0;border-radius:12px;padding:11px 20px;font-size:14.5px;font-weight:700;cursor:pointer;
+  transition:.15s;width:auto}
+#dhpNoticeBg .nt-b.gray{background:rgba(255,255,255,.10);color:#e5e7eb;border:1px solid rgba(255,255,255,.14)}
+#dhpNoticeBg .nt-b.gray:hover{background:rgba(255,255,255,.18)}
+#dhpNoticeBg .nt-b.blue{background:linear-gradient(90deg,#22a6f2,#2563eb);color:#fff;
+  box-shadow:0 10px 26px rgba(37,99,235,.45)}
+#dhpNoticeBg .nt-b.blue:hover{transform:translateY(-1px)}
+#dhpNoticeBg .nt-b:active{transform:scale(.98)}
+</style>
+<div id="dhpNoticeBg">
+<div class="nt-card">
+<button class="nt-x" id="dhpNtX" type="button">✕</button>
+<div class="nt-tag"><span class="ic">📣</span><span id="dhpNtTag">THÔNG BÁO</span></div>
+<div class="nt-title" id="dhpNtTitle"></div>
+<div class="nt-body" id="dhpNtBody"></div>
+<div class="nt-time" id="dhpNtTime"></div>
+<div class="nt-btns">
+<button class="nt-b gray" id="dhpNtClose" type="button">Đóng</button>
+<button class="nt-b blue" id="dhpNtSnooze" type="button">Đóng 2 giờ</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  var bg=document.getElementById('dhpNoticeBg'); if(!bg) return;
+  var KEY='dhp_notice_snooze';
+  function hide(){ bg.classList.remove('show'); }
+  function snoozed(ver){
+    try{
+      var raw=localStorage.getItem(KEY); if(!raw) return false;
+      var o=JSON.parse(raw);
+      return o && o.ver===ver && o.until && Date.now()<o.until;
+    }catch(e){ return false; }
+  }
+  function snooze(ver,hours){
+    try{ localStorage.setItem(KEY,JSON.stringify({ver:ver,until:Date.now()+hours*3600*1000})); }catch(e){}
+    hide();
+  }
+  document.getElementById('dhpNtX').onclick=hide;
+  document.getElementById('dhpNtClose').onclick=hide;
+  bg.addEventListener('click',function(e){ if(e.target===bg) hide(); });
+  fetch('/api/notice',{credentials:'same-origin'}).then(function(r){return r.json()}).then(function(j){
+    var n=(j&&j.notice)||{};
+    if(!n.on || !(n.title||n.body)) return;
+    var ver=n.ver||0;
+    if(snoozed(ver)) return;
+    document.getElementById('dhpNtTag').textContent=n.tag||'THÔNG BÁO';
+    document.getElementById('dhpNtTitle').textContent=n.title||'';
+    document.getElementById('dhpNtBody').textContent=n.body||'';
+    document.getElementById('dhpNtTime').textContent=n.updated||'';
+    document.getElementById('dhpNtSnooze').onclick=function(){ snooze(ver,2); };
+    bg.classList.add('show');
+  }).catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  function devId(){
+    try{ var m=document.cookie.match(/(?:^|; )dev_id=([^;]+)/); return m?decodeURIComponent(m[1]):''; }
+    catch(e){ return ''; }
+  }
+  function show(d){
+    if(document.getElementById('uidBanBox')) return;
+    var b=document.createElement('div');
+    b.id='uidBanBox';
+    b.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);display:flex;'+
+      'align-items:center;justify-content:center;padding:22px;text-align:center;color:#fff;'+
+      'font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif';
+    b.innerHTML='<div style="max-width:420px;border:1px solid rgba(239,68,68,.5);border-radius:20px;'+
+      'padding:22px;background:linear-gradient(180deg,rgba(239,68,68,.14),rgba(0,0,0,.6))">'+
+      '<div style="font-size:40px">🚫</div>'+
+      '<div style="font-weight:900;font-size:17px;margin:8px 0">UDID MÁY CỦA BẠN ĐÃ BỊ BAN</div>'+
+      '<div style="font-size:13px;color:#fca5a5;word-break:break-all">UID: '+(d.uid||'')+'</div>'+
+      '<div style="font-size:13px;color:#e5e7eb;margin-top:6px">Lý do: '+(d.reason||'Vi phạm điều khoản')+'</div>'+
+      '<div style="margin-top:14px;font-weight:800;color:#fcd34d;font-size:14px">'+
+      'Vui lòng liên hệ admin 0888924907 để mở band udid máy..</div>'+
+      '<a href="tel:0888924907" style="display:block;margin-top:14px;padding:12px;border-radius:14px;'+
+      'background:linear-gradient(90deg,#ef4444,#f97316);color:#fff;font-weight:800;text-decoration:none">'+
+      '📞 GỌI ADMIN 0888924907</a></div>';
+    document.body.appendChild(b);
+  }
+  function check(){
+    fetch('/api/status?device_id='+encodeURIComponent(devId()))
+      .then(function(r){return r.json();})
+      .then(function(d){ if(d && d.uid_banned) show(d); })
+      .catch(function(){});
+  }
+  check(); setInterval(check, 30000);
+})();
+</script>
+<script>
+(function(){
+  if(window.srhLanguagePickerInitialized) return;
+  window.srhLanguagePickerInitialized = true;
+  var translations = {
+    "Trang chủ":"Home","Cài đặt":"Settings","Fix Lỗi Key":"Fix Key","Reset máy":"Reset Device",
+    "Proxy cho Free Fire iOS · Cài đặt nhanh, kích hoạt đơn giản.":"Proxy for Free Fire iOS · Quick setup and activation.",
+    "Không VPN":"No VPN","Cách hoạt động":"HOW IT WORKS","CÁCH HOẠT ĐỘNG":"HOW IT WORKS",
+    "Tải ":"Download ","profile (.mobileconfig)":"profile (.mobileconfig)",
+    " — cài qua Safari — tự động cài chứng chỉ + proxy.":" — install it in Safari to configure the certificate and proxy automatically.",
+    "Xong rồi vào Wi-Fi cài tay. Nếu anh em dùng 4G/5G thì lên App Store tải app Potaso về cài nhé!":
+      "Done! Configure it manually in Wi-Fi. If you use 4G/5G, download and install the Potaso app from the App Store.",
+    "Bật tin cậy chứng chỉ: ":"Trust the certificate: ","Cài đặt → Chung → Giới thiệu → Tin cậy chứng nhận":"Settings → General → About → Certificate Trust Settings",
+    " → bật ":" → enable ","Nhập ":"Enter "," vào game → patch tự lề, tính năng bật ngay trong game.":" in the game → the patch and features activate in-game.",
+    "KÍCH HOẠT KEY":"ACTIVATE KEY","IP của bạn":"Your IP","Key bản quyền":"License key",
+    "Dán key của bạn vào đây...":"Paste your key here...","⚡ Kích Hoạt Key":"⚡ Activate Key","Xoá key đã lưu":"Delete saved key",
+    "Vui lòng nhập key":"Please enter a key","Không tìm thấy key đã lưu.":"No saved key was found.",
+    "⚡ Đang ACTIVE IP, vui lòng đợi...":"⚡ Activating IP, please wait...",
+    "Đã duyệt IP thành công":"IP approved successfully","Đã xóa key và thu hồi quyền IP.":"Key deleted and IP access revoked.",
+    "Chưa có key nào được lưu trên thiết bị.":"No key is saved on this device.",
+    "IP của bạn:":"Your IP:","✅ Đã duyệt IP mới thành công:":"✅ New IP approved:",
+    "🔄 Phát hiện bạn đã đổi WiFi/mạng: IP cũ ":"🔄 Network change detected: previous IP ",
+    " → IP mới ":" → new IP "," · IP cũ đã ngừng hoạt động, đang tự động ACTIVE IP mới...":" · previous IP is inactive; automatically activating the new IP...",
+    "🔄 IP này chưa được ACTIVE · Đang tự động ACTIVE IP...":"🔄 This IP is not active · Automatically activating...",
+    "❌ Chưa duyệt được IP mới:":"❌ Unable to approve the new IP:",
+    "Máy chủ từ chối yêu cầu. Hãy kiểm tra key hoặc thử lại.":"The server rejected the request. Check the key or try again.",
+    "❌ Lỗi khi duyệt IP mới:":"❌ Error approving the new IP:","Vui lòng thử lại.":"Please try again.",
+    "Lỗi mạng:":"Network error:","Không xác định":"Unknown error",
+    "Bấm nút Kick Hoạt Key để duyệt IP cho máy bạn trước!":"Activate your key first to approve this device's IP.",
+    "✅ Đã duyệt IP · Bấm để tải cấu hình VPN":"✅ IP approved · Tap to download the VPN profile",
+    "Cần Kick Hoạt Key để mở khoá":"Activate your key to unlock","⚡ Tải Cấu Hình":"⚡ Download Profile","🔒 Đang Khóa":"🔒 Locked",
+    "ANTIBAND VIP ( V1 )":"ANTIBAN VIP (V1)","Bảo Vệ Tài Khoản 100%":"ACCOUNT PROTECTION",
+    "Chống khoá nick, mã hoá gói tin dữ liệu an toàn khi vào game":"Helps protect your account and encrypts data packets while playing.",
+    "⚪ Chưa kích hoạt":"⚪ Not activated","⚡ Đang nạp module an toàn...":"⚡ Loading protection module...",
+    "✅ Đã kích hoạt bảo vệ chống ban thành công (100%)!":"✅ Protection module activated!",
+    "⚡ Đang kích hoạt 1%...":"⚡ Activating 1%...",
+    "✅ Đã hoàn tất cài đặt!":"✅ Setup complete!",
+    "🟢 Đang bảo vệ (100% An toàn)":"🟢 Protection active (100%)",
+    "⚡ Đang nạp module (" : "⚡ Loading module (",
+    "🟢 Đang chạy (VPN máy)":"🟢 Running (device VPN)",
+    "Đang bật qua VPN...":"Enabling through VPN...","Đang tắt...":"Disabling...",
+    "Antiband VIP ( V1 ): Đã tắt":"Antiban VIP (V1): Disabled",
+    "Antiband VIP ( V1 ): Đã kích hoạt bảo vệ 100%":"Antiban VIP (V1): Protection enabled",
+    "Đã kích hoạt VPN máy":"Device VPN enabled","Đã tắt":"Disabled","Đã kích hoạt (Offline)":"Enabled (offline)",
+    "CHỨC NĂNG MOD ALOK VIP":"VIP ALOK MOD FEATURES","Tự động kích hoạt qua VPN máy":"Automatically activated through the device VPN",
+    "FF Thường":"Standard FF","FF MAX":"FF MAX","Buff tốc chạy & hồi chiêu Alok bản FF thường":"Increase movement speed and reduce Alok's cooldown in standard FF.",
+    "Tăng hào quang bán kính rộng & hồi máu Alok":"Expand the aura radius and restore Alok's health.",
+    "Hiệu ứng âm thanh & mod skin Alok FF MAX":"Alok FF MAX sound effects and skin mod.",
+    "Full hiệu ứng VIP đặc biệt Alok FF MAX độc quyền":"Exclusive VIP Alok FF MAX effects.",
+    "Sự kiện Key Free":"Free Key Event","Tự do nhận · Key dùng 2 tiếng · Cooldown 15 giờ/thiết bị":"Claim a free key · Valid for 2 hours · 15-hour cooldown per device",
+    "Đang tải trạng thái...":"Loading status...","Nhận Key":"Claim Key",
+    "◆ SERVER PROXY":"◆ PROXY SERVER","THÔNG TIN KẾT NỐI":"CONNECTION DETAILS","ĐỊA CHỈ IP":"IP ADDRESS",
+    "Chưa kết nối":"Not connected","COPY":"COPY","Kích hoạt key hợp lệ để xem thông tin máy chủ.":"Activate a valid key to view server details.",
+    "DANH SÁCH CHỨC NĂNG & CỔNG (PORT)":"FEATURES & PORTS","Danh sách sẽ hiển thị sau khi IP được kích hoạt.":"The list will appear after your IP is activated.",
+    "CÁCH CÀI ĐẶT THỦ CÔNG":"MANUAL SETUP","Vào ":"Go to ","Cài đặt → Wi-Fi":"Settings → Wi-Fi",
+    " → bấm vào mạng Wi-Fi đang dùng → kéo xuống ":" → tap the connected Wi-Fi network → scroll to ",
+    "Cấu hình proxy":"Configure Proxy"," → chọn ":" → select ","Thủ công":"Manual",
+    "Nhập ":"Enter ","Máy chủ (Server):":"Server:"," địa chỉ IP hiển thị trong mục ":" the IP address shown under ",
+    "Thông tin kết nối":"Connection Details","Cổng (Port)":"Port"," tương ứng với chức năng bạn chọn trong danh sách phía trên.":" for the feature you selected above.",
+    "Bấm ":"Tap ","Lưu":"Save"," → mở game. ":" → open the game. ","Xong!":"Done!",
+    "Mẹo: Tải profile sẽ tự động điền IP/Port, không cần nhập tay.":"Tip: Install the profile to fill in the IP and port automatically.",
+    "CÀI CHỨNG CHỈ TIN CẬY (.mobileconfig)":"INSTALL TRUST CERTIFICATE (.mobileconfig)",
+    "Cần Kích Hoạt Key để mở khoá":"Activate a key to unlock","XEM VIDEO HƯỚNG DẪN":"WATCH SETUP VIDEO",
+    "Xem từng bước cài đặt chi tiết":"View detailed setup instructions",
+    "CHUYỂN ĐỔI KEY BỊ LỖI":"REPLACE A FAULTY KEY","Dán KEY bị lỗi vào ô bên dưới.":"Paste the faulty key below.",
+    "Bấm ":"Tap "," — hệ thống sẽ tạo key mới cùng thời hạn.":" — a new key with the same expiration will be created.",
+    "Copy key mới → nhập vào game → kích hoạt bình thường.":"Copy the new key → enter it in the game → activate as usual.",
+    "KEY BỊ LỖI":"FAULTY KEY","DÁN":"PASTE","FIX KEY":"FIX KEY",
+    "Key mới được tạo cùng thời hạn với key cũ. Key cũ sẽ bị vô hiệu.":"The new key keeps the old key's expiration date. The old key will be disabled.",
+    "ĐỔI MÁY / GỠ THIẾT BỊ CŨ":"DEVICE TRANSFER / REMOVE OLD DEVICE","Reset key sang máy mới":"Reset key for a new device",
+    "Dán ":"Paste "," cần reset vào ô bên dưới.":" to reset in the field below.",
+    " — key sẽ được gỡ khỏi máy cũ.":" — the key will be removed from the old device.",
+    "Vào tab ":"Open the "," nếu cần đổi key, nhập key mới vào game.":" tab if you need a replacement key, then enter it in the game.",
+    "RESET MÁY":"RESET DEVICE","Mỗi key chỉ được reset ":"Each key can be reset only ",
+    " lần / 10 phút.":" times every 10 minutes.","SaRangHaeyo ©2025 · All rights reserved":"SaRangHaeyo ©2025 · All rights reserved",
+    "Video hướng dẫn cài cấu hình iOS":"iOS Configuration Setup Video","Mở link bên dưới (hoặc dán vào Safari):":"Open the link below (or paste it into Safari):",
+    "Mở video":"Open video","Đóng":"Close","🎁 Nhận Key Free thành công":"🎁 Free key claimed successfully",
+    "Key có thời hạn ":"Key valid for "," · đã tự động kích hoạt cho thiết bị này":" · automatically activated for this device",
+    "📋 Sao chép Key":"📋 Copy Key","Sao chép key mới":"Copy new key","Sao chép":"Copy",
+    "✅ Đã sao chép key vào clipboard":"✅ Key copied to clipboard",
+    "❌ Không sao chép được, hãy chọn thủ công.":"❌ Unable to copy. Please select it manually.",
+    "🎉 Đang mở · Nhấn để nhận key free ngay":"🎉 Available · Tap to claim your free key",
+    "🎁 Nhận Key Free":"🎁 Claim Free Key","Đang chờ":"Waiting","Chờ ":"Wait ",
+    "Bạn đã nhận · Chờ 15h":"Claimed · 15-hour cooldown",
+    "Bạn đã nhận · 1 UID chờ đủ 36 giờ":"Claimed · 36-hour cooldown per UID",
+    "Chờ nhận lại sau:":"Available again in:","Thời hạn:":"Duration:",
+    "🔑 Có người vừa kích hoạt key!":"🔑 A key was just activated!",
+    "● Online":"● Online",    "Tiếng Việt":"Vietnamese","English":"English","Language":"Ngôn ngữ",
+    "Liên hệ":"Contact","Mở Zalo":"Open Zalo","Mở Telegram":"Open Telegram",
+    "Đang tải thông tin máy chủ...":"Loading server details...","Đang tải danh sách cổng...":"Loading ports...",
+    "Chưa kích hoạt":"Not activated","Cần kích hoạt IP bằng key hợp lệ.":"Activate this IP with a valid key.",
+    "Kích hoạt key hợp lệ để xem danh sách chức năng và cổng.":"Activate a valid key to view features and ports.",
+    "IP đang hoạt động. Chọn chức năng và sao chép cổng cần dùng.":"IP active. Select a feature and copy its port.",
+    "Cắm proxy theo IP VPS + port ở trên. Nếu IP máy bạn chưa kích hoạt key sẽ bị chặn 403; vào web bấm ACTIVE IP là chạy ngay.":
+      "Connect using the VPS IP and port above. Requests are blocked until your IP is activated with a valid key.",
+    "Proxy Antena":"Antenna Proxy","Proxy No Antena":"No-Antenna Proxy","Proxy Aim Body":"Body Aim Proxy",
+    "Proxy Aim Neck":"Neck Aim Proxy","Proxy Aim Magic":"Magic Aim Proxy","Proxy Antena":"Antenna Proxy",
+    "Không khả dụng":"Unavailable","Chưa có cổng nào được cấu hình.":"No ports are configured.",
+    "Không thể tải thông tin kết nối:":"Unable to load connection details:","Hãy thử tải lại trang. Nếu lỗi tiếp tục, vui lòng liên hệ quản trị viên.":"Please reload the page. If the problem continues, contact the administrator.",
+    "❌ KEY ĐÃ HẾT HẠN":"❌ KEY EXPIRED","IP đang ACTIVE":"Active IP","IP hiện tại":"Current IP",
+    "IP cũ (đã ngừng)":"Previous IP (inactive)","IP ĐANG HOẠT ĐỘNG":"IP ACTIVE",
+    "⚠️ IP ĐÃ ĐỔI — CẦN ACTIVE IP MỚI":"⚠️ IP CHANGED — NEW IP ACTIVATION REQUIRED",
+    " · chưa ACTIVE":" · not active","Gói đăng ký của bạn đã bị chặn vĩnh viễn.":"Your subscription has been permanently blocked.",
+    "Bị chặn lúc:":"Blocked at:","Key của bạn đã bị chặn.":"Your key has been blocked.",
+    "Trạng thái":"Status","Hoạt động":"Active","Hết hạn":"Expired","Chưa ACTIVE IP":"IP not activated",
+    "Loại key":"Key type","Ngày kích hoạt":"Activation date","Ngày hết hạn":"Expiration date",
+    "Kick Hoạt Key":"Activate Key"," để duyệt IP mới. IP cũ sẽ không còn dùng được.":" to approve the new IP. The old IP will no longer work.",
+    "Vui lòng nhập key bị lỗi":"Enter the faulty key.","⚡ Đang xử lý...":"⚡ Processing...",
+    "✅ Key mới: ":"✅ New key: ","Không thể fix key":"Unable to fix the key",
+    "Vui lòng nhập key cần reset":"Enter the key to reset.","⚡ Đang reset...":"⚡ Resetting...",
+    "Reset thành công! Hãy kích hoạt lại trên máy mới.":"Reset successful! Activate it again on the new device.",
+    "Không thể reset":"Unable to reset","✅ OK":"✅ OK","❌ Lỗi":"❌ Error",
+    "Đã tạo key mới thành công. Key cũ đã bị vô hiệu hoá. Hãy kích hoạt key mới trong game.":"New key created. The old key has been disabled. Activate the new key in the game.",
+    "Đã vượt giới hạn: chỉ được fix 2 lần / 10 phút cho mỗi key":"Limit reached: each key can be fixed twice every 10 minutes.",
+    "Key không tồn tại trong hệ thống":"Key not found.","Key này đã bị khoá hoặc đã được thay thế trước đó":"This key is locked or has already been replaced.",
+    "Key đã hết hạn, không thể fix":"This key has expired and cannot be fixed.",
+    "VIP V1":"VIP V1","#Proxy+Patch":"#Proxy+Patch","#Proxy":"#Proxy",
+    "Cài đặt VPN":"Proxy Setup","Profile · Chứng chỉ · 5 phút":"Profile · Certificate · 5 min",
+    "Đổi key đang lỗi · Key mới":"Replace a faulty key · Get a new key",
+    "KEY CỦA BẠN ":"YOUR KEY "
+  };
+  var keys = Object.keys(translations).sort(function(a,b){return b.length-a.length;});
+  var originalText = new WeakMap();
+  var originalAttrs = new WeakMap();
+  var language = 'en';
+
+  function translated(value, lang){
+    if(lang === 'vi') return value;
+    var trimmed = value.trim();
+    if(Object.prototype.hasOwnProperty.call(translations, trimmed)){
+      return value.slice(0, value.indexOf(trimmed)) + translations[trimmed] + value.slice(value.indexOf(trimmed) + trimmed.length);
+    }
+    var output = value;
+    keys.forEach(function(key){
+      if(output.indexOf(key) !== -1) output = output.split(key).join(translations[key]);
+    });
+    return output;
+  }
+  function visit(node){
+    if(node.nodeType === 3){
+      if(!originalText.has(node)) originalText.set(node, node.nodeValue || '');
+      var source = originalText.get(node);
+      var result = translated(source, language);
+      if(node.nodeValue !== result) node.nodeValue = result;
+      return;
+    }
+    if(node.nodeType !== 1 || /^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.tagName)) return;
+    ['placeholder','title','aria-label'].forEach(function(attr){
+      if(!node.hasAttribute(attr)) return;
+      var saved = originalAttrs.get(node) || {};
+      if(!Object.prototype.hasOwnProperty.call(saved, attr)) saved[attr] = node.getAttribute(attr);
+      originalAttrs.set(node, saved);
+      var value = translated(saved[attr], language);
+      if(node.getAttribute(attr) !== value) node.setAttribute(attr, value);
+    });
+    Array.prototype.forEach.call(node.childNodes, visit);
+  }
+  function setLanguage(next){
+    language = next === 'vi' ? 'vi' : 'en';
+    document.documentElement.lang = language;
+    try { localStorage.setItem('srh-language', language); }
+    catch(error) { console.warn('Unable to save language preference:', error); }
+    Array.prototype.forEach.call(document.querySelectorAll('.srh-lang-btn'), function(button){
+      var active = button.getAttribute('data-lang') === language;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    visit(document.body);
+  }
+  document.querySelectorAll('.srh-lang-btn').forEach(function(button){
+    button.addEventListener('click', function(){ setLanguage(button.getAttribute('data-lang')); });
+  });
+  var savedLanguage = 'en';
+  try { savedLanguage = localStorage.getItem('srh-language') || 'en'; }
+  catch(error) { console.warn('Unable to read saved language preference:', error); }
+  setLanguage(savedLanguage);
+  new MutationObserver(function(records){
+    records.forEach(function(record){
+      if(record.type === 'characterData') visit(record.target);
+      else record.addedNodes.forEach(visit);
+    });
+  }).observe(document.body, {subtree:true, childList:true, characterData:true});
+})();
+</script>
+<script>
+(function(){
+  async function syncConfigActionVisibility(){
+    const card = document.getElementById('btnConfig');
+    if(!card) return;
+    try{
+      const response = await fetch('/api/config-visibility', {cache:'no-store'});
+      if(!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      card.style.display = data.enabled === true ? '' : 'none';
+    }catch(error){
+      card.style.display = 'none';
+      console.warn('Unable to load configuration action visibility:', error);
+    }
+  }
+  syncConfigActionVisibility();
+  window.setInterval(syncConfigActionVisibility, 15000);
+})();
+</script>
+</body>
+</html>
